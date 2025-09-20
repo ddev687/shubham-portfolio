@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shubham Maurya | Portfolio</title>
+  <meta name="description" content="Portfolio of Shubham Maurya, Senior Backend Engineer with 7+ years experience in Node.js, Microservices, PostgreSQL, MongoDB, Cloud, and AI projects.">
+  <meta name="keywords" content="Backend Engineer, Node.js, Microservices, Cloud, AI, Portfolio">
+  <meta property="og:title" content="Shubham Maurya | Portfolio">
+  <meta property="og:description" content="Senior Backend Engineer | Node.js | Microservices | Cloud-Native Systems">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     /* ===== Base Styles ===== */
@@ -11,12 +15,11 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f3f4f6;
+      background: #fdfdfd;
       color: #111827;
       scroll-behavior: smooth;
     }
     h1, h2, h3 { margin: 0; }
-
     a { text-decoration: none; }
 
     section {
@@ -28,7 +31,7 @@
     /* ===== Hero ===== */
     .hero {
       height: 100vh;
-      background: linear-gradient(135deg, #2563eb, #1e3a8a);
+      background: linear-gradient(135deg, #f6d365, #fda085); /* warm amber → rose */
       color: white;
       display: flex;
       flex-direction: column;
@@ -37,18 +40,9 @@
       text-align: center;
       padding: 0 1rem;
     }
-    .hero h1 {
-      font-size: 3rem;
-      animation: fadeInDown 1s ease;
-    }
-    .hero p {
-      margin: 1rem 0;
-      font-size: 1.3rem;
-      animation: fadeInUp 1.2s ease;
-    }
-    .hero-buttons {
-      margin-top: 1.5rem;
-    }
+    .hero h1 { font-size: 3rem; animation: fadeInDown 1s ease; }
+    .hero p { margin: 1rem 0; font-size: 1.3rem; animation: fadeInUp 1.2s ease; }
+    .hero-buttons { margin-top: 1.5rem; }
     .hero-buttons a {
       display: inline-block;
       margin: 0 10px;
@@ -58,13 +52,14 @@
       transition: transform 0.3s, background 0.3s;
     }
     .btn-primary {
-      background: #facc15; color: #1e3a8a;
+      background: #fff4db; 
+      color: #7c2d12;
     }
-    .btn-primary:hover { background: #fde047; transform: scale(1.05); }
+    .btn-primary:hover { background: #fde68a; transform: scale(1.05); }
     .btn-secondary {
-      border: 2px solid #facc15; color: #facc15;
+      border: 2px solid #fff4db; color: #fff4db;
     }
-    .btn-secondary:hover { background: #facc15; color: #1e3a8a; transform: scale(1.05); }
+    .btn-secondary:hover { background: #fff4db; color: #7c2d12; transform: scale(1.05); }
 
     /* ===== Section Headings ===== */
     h2 {
@@ -78,15 +73,15 @@
       display: block;
       width: 60px;
       height: 3px;
-      background: #2563eb;
+      background: #f6d365; /* warm amber accent */
       margin: 8px auto 0;
       border-radius: 2px;
     }
 
-    /* ===== Cards (Glassmorphism) ===== */
+    /* ===== Cards ===== */
     .card {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
       padding: 1.5rem;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -95,19 +90,19 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .card.visible { opacity: 1; transform: translateY(0); }
-    .card h3 { color: #2563eb; margin-bottom: .5rem; }
+    .card h3 { color: #f6a765; margin-bottom: .5rem; }
 
-    /* ===== Grid for Projects ===== */
+    /* ===== Projects ===== */
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
 
     /* ===== Skills ===== */
     .skills span {
       display: inline-block;
-      background: #2563eb;
+      background: #f6a765;
       color: white;
       margin: 6px;
       padding: 8px 16px;
@@ -115,19 +110,21 @@
       font-size: 0.9rem;
       transition: transform 0.3s, background 0.3s;
     }
-    .skills span:hover { transform: scale(1.05); background: #1e40af; }
+    .skills span:hover { transform: scale(1.05); background: #f97316; }
 
     /* ===== Contact ===== */
-    #contact {
-      text-align: center;
+    #contact { text-align: center; }
+    .social-links a {
+      display: inline-block;
+      margin: 8px;
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: #f6a765;
+      color: white;
+      font-weight: 600;
+      transition: background 0.3s;
     }
-    #contact a {
-      color: #2563eb;
-      font-weight: bold;
-      margin: 0 10px;
-      transition: color 0.3s;
-    }
-    #contact a:hover { color: #1e40af; }
+    .social-links a:hover { background: #f97316; }
 
     /* ===== Footer ===== */
     footer {
@@ -153,7 +150,7 @@
   <!-- Hero -->
   <div class="hero">
     <h1>Shubham Maurya</h1>
-    <p>Senior Backend Engineer • 7+ Years • Node.js, Cloud, AI</p>
+    <p>Senior Backend Engineer | 7+ Years Experience | Node.js | Microservices | PostgreSQL | MongoDB | Docker | Kubernetes</p>
     <div class="hero-buttons">
       <a href="#projects" class="btn-primary">See My Work</a>
       <a href="SHUBHAM_MAURYA_CV.pdf" class="btn-secondary" target="_blank">Download Resume</a>
@@ -165,10 +162,10 @@
     <h2>About Me</h2>
     <div class="card">
       <p>
-        Results-driven Senior Backend Engineer with 7+ years of experience designing, developing, 
-        and scaling cloud-native systems. Proven track record in microservices, APIs, and cloud infra 
-        (AWS, GCP, Docker, Kubernetes). Adept at system optimization, integrations, and mentoring teams. 
-        Passionate about building reliable, scalable solutions with measurable business impact.
+        Senior Backend Engineer with expertise in Node.js, Nest.js, PostgreSQL, MongoDB, AWS, Docker, and Kubernetes. 
+        Proven track record in microservices, API design, and cloud infrastructure. 
+        Adept at system optimization, integrations, and mentoring engineers. 
+        Passionate about building scalable, reliable systems that drive business impact.
       </p>
     </div>
   </section>
@@ -192,17 +189,17 @@
     <h2>Experience</h2>
     <div class="card">
       <h3>Food Market Hub</h3>
-      <strong>Senior Backend Engineer | Singapore / Remote | Sep 2022 – Present</strong>
+      <strong>Senior Backend Engineer | Sep 2022 – Present</strong>
       <ul>
-        <li>Led integrations with 35+ POS/accounting partners, driving product adoption.</li>
-        <li>Architected scalable microservices & APIs, ensuring reliability.</li>
-        <li>Optimized database queries/services → 30% faster + lower infra costs.</li>
-        <li>Collaborated cross-functionally to ship 7+ major features.</li>
+        <li>Led integrations with 35+ POS/accounting partners.</li>
+        <li>Architected scalable microservices & APIs.</li>
+        <li>Optimized backend services → 30% faster + reduced costs.</li>
+        <li>Collaborated cross-functionally to deliver 7+ major features.</li>
       </ul>
     </div>
     <div class="card">
-      <h3>Geeks Invention Pvt. LTD</h3>
-      <strong>Senior Full-Stack Engineer | India / Remote | Jul 2021 – Aug 2022</strong>
+      <h3>Geeks Invention</h3>
+      <strong>Senior Full-Stack Engineer | Jul 2021 – Aug 2022</strong>
       <ul>
         <li>Promoted to Team Lead within 1 month; managed 8 engineers.</li>
         <li>Built secure API-driven certificate management system.</li>
@@ -212,19 +209,19 @@
     </div>
     <div class="card">
       <h3>La Net Team Software Solutions</h3>
-      <strong>Software Developer | Surat, India | Dec 2017 – Jun 2021</strong>
+      <strong>Software Developer | Dec 2017 – Jun 2021</strong>
       <ul>
         <li>Scaled CRM backend from 50 → 10,000+ customers.</li>
-        <li>Built real-time analytics, multi-channel triggers, and integrations.</li>
+        <li>Built real-time analytics, triggers, and integrations.</li>
         <li>Developed doctor appointment booking APIs.</li>
-        <li>Hands-on with Docker & Kubernetes for cloud scaling.</li>
+        <li>Hands-on with Docker & Kubernetes scaling.</li>
       </ul>
     </div>
   </section>
 
   <!-- Projects -->
   <section id="projects">
-    <h2>Projects</h2>
+    <h2>Project</h2>
     <div class="projects">
       <div class="card project">
         <h3>YourDateAI</h3>
@@ -244,14 +241,13 @@
     <div class="card">
       <p>Email: <a href="mailto:shubhammaurya2385@gmail.com">shubhammaurya2385@gmail.com</a></p>
       <p>Phone: +91 7621069675</p>
-      <p>
-        <a href="https://github.com/ddev687" target="_blank">GitHub</a> |
+      <div class="social-links">
+        <a href="https://github.com/ddev687" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank">LinkedIn</a>
-      </p>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Shubham Maurya</p>
   </footer>
