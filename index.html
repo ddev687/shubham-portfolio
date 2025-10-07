@@ -12,18 +12,31 @@
   <style>
     /* ===== Base Styles ===== */
     * { box-sizing: border-box; }
+    :root {
+      --bg-start: #1a1a2e;
+      --bg-end: #16213e;
+      --accent: #f97316; /* orange */
+      --accent-2: #a855f7; /* purple */
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --btn-blue: #2563eb;
+      --btn-red: #ef4444;
+    }
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #fdfdfd;
-      color: #111827;
+      background: radial-gradient(1200px 600px at 20% 20%, #2d2d5a, transparent 60%),
+                  radial-gradient(900px 500px at 85% 15%, #3a3a6b, transparent 55%),
+                  linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text);
       scroll-behavior: smooth;
+      min-height: 100vh;
     }
     h1, h2, h3 { margin: 0; }
     a { text-decoration: none; }
 
     section {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 4rem auto;
       padding: 0 1.5rem;
       scroll-margin-top: 80px; /* ✅ prevent titles from being hidden */
@@ -34,58 +47,130 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background: rgba(20, 20, 40, 0.6);
+      backdrop-filter: blur(8px);
       display: flex;
       justify-content: center;
-      padding: 0.8rem 1rem;
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     nav a {
-      margin: 0 15px;
-      color: #f97316;
+      margin: 0 16px;
+      color: #e5e7eb;
       font-weight: 600;
-      transition: color 0.3s;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.2s ease;
     }
-    nav a:hover {
-      color: #7c2d12;
+    nav a:hover { color: #ffffff; }
+    nav a.active::after,
+    nav a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -10px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
     }
-    nav a.active {
-      border-bottom: 2px solid #f97316; /* ✅ active link highlight */
-      padding-bottom: 4px;
-    }
+
+    /* Links inside cards/panels inherit heading color */
+    .card a, .panel a { color: inherit; text-decoration: none; }
+    .card a:hover, .panel a:hover { text-decoration: underline; text-underline-offset: 2px; }
 
     /* ===== Hero ===== */
     .hero {
-      height: 100vh;
-      background: linear-gradient(135deg, #f6d365, #fda085);
-      color: white;
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 1rem;
+      padding: 4rem 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .hero h1 { font-size: 3rem; animation: fadeInDown 1s ease; }
-    .hero p { margin: 1rem 0; font-size: 1.3rem; animation: fadeInUp 1.2s ease; }
-    .hero-buttons { margin-top: 1.5rem; }
-    .hero-buttons a {
+    .hero::before {
+      /* wavy lines background */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px 300px at 70% 10%, rgba(59,130,246,0.08), transparent 60%),
+                  radial-gradient(500px 260px at 90% 30%, rgba(168,85,247,0.08), transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .hero-title { font-size: 2.75rem; line-height: 1.15; animation: fadeInDown 0.9s ease; }
+    .hero-title strong {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      font-weight: 700;
       display: inline-block;
-      margin: 0 10px;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: transform 0.3s, background 0.3s;
     }
-    .btn-primary {
-      background: #fff4db;
-      color: #7c2d12;
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.85rem; color: #eaeaea;
+      margin: 16px 0 18px;
     }
-    .btn-primary:hover { background: #fde68a; transform: scale(1.05); }
-    .btn-secondary {
-      border: 2px solid #fff4db; color: #fff4db;
+    .hero-desc { color: var(--muted); max-width: 56ch; }
+    .social { margin-top: 16px; display: flex; gap: 10px; }
+    .social::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(200px 100px at 50% 0%, rgba(168, 85, 247, 0.1), transparent 60%);
+      pointer-events: none;
+      z-index: -1;
     }
-    .btn-secondary:hover { background: #fff4db; color: #7c2d12; transform: scale(1.05); }
+    .social a { 
+      color: #e5e7eb; 
+      opacity: 0.9; 
+      transition: transform .2s, opacity .2s, box-shadow .2s; 
+      padding: 12px; 
+      border-radius: 50%; 
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .social a:hover { 
+      transform: translateY(-2px); 
+      opacity: 1; 
+      background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15));
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+    }
+    .social-icon { 
+      width: 24px; 
+      height: 24px; 
+      display: block; 
+      filter: brightness(1.1) contrast(1.1);
+    }
+    .hero-buttons { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 10px; font-weight: 600; border: 1px solid transparent; }
+    .btn-contact { background: var(--btn-blue); color: white; }
+    .btn-contact:hover { filter: brightness(1.1); }
+    .btn-portfolio { background: var(--btn-red); color: white; }
+    .btn-portfolio:hover { filter: brightness(1.1); }
+    .hero-image { position: relative; display: grid; place-items: center; }
+    .portrait {
+      width: clamp(220px, 40vw, 420px);
+      height: clamp(260px, 48vw, 520px);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+      display: grid; place-items: center;
+      color: #cbd5e1;
+    }
+    .portrait span { opacity: .7; }
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; text-align: left; padding-top: 6rem; }
+      .hero-image { order: -1; margin-bottom: 1rem; }
+    }
 
     /* ===== Section Headings ===== */
     h2 {
@@ -99,44 +184,90 @@
       display: block;
       width: 60px;
       height: 3px;
-      background: #f6d365;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
       margin: 8px auto 0;
       border-radius: 2px;
     }
 
     /* ===== Cards ===== */
     .card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255,255,255,0.05);
       backdrop-filter: blur(8px);
       padding: 1.5rem;
       border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       margin-bottom: 1.5rem;
       opacity: 0; transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      color: #e5e7eb;
+      border: 1px solid rgba(255,255,255,0.12);
     }
     .card.visible { opacity: 1; transform: translateY(0); }
-    .card h3 { color: #f6a765; margin-bottom: .5rem; }
+    .card h3 { color: #f97316; margin-bottom: .5rem; font-weight: 600; }
+    .panel { 
+      background: rgba(255,255,255,0.05); 
+      border: 1px solid rgba(255,255,255,0.12); 
+      border-radius: 15px; 
+      padding: 1.25rem; 
+      color: #e5e7eb;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
 
     /* ===== Projects ===== */
-    .projects {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .grid-cards { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 1100px) { .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 720px) { .grid-cards { grid-template-columns: 1fr; } }
+    .card .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .card .meta { color: #9ca3af; font-size: .9rem; margin-top: 2px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tag { 
+      padding: 4px 10px; 
+      border-radius: 999px; 
+      background: rgba(255,255,255,0.08); 
+      border: 1px solid rgba(255,255,255,0.12); 
+      font-size: .8rem; 
+      color: #cbd5e1; 
+    }
+    .actions { margin-top: 14px; display: flex; gap: 10px; }
+    .btn-visit { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 6px; 
+      padding: 8px 16px; 
+      border-radius: 20px; 
+      font-weight: 600; 
+      color: white; 
+      background: linear-gradient(90deg, #a855f7, #f97316); 
+      border: 0; 
+      font-size: 0.9rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-visit:hover { 
+      transform: translateY(-1px); 
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
     }
 
     /* ===== Skills ===== */
-    .skills span {
-      display: inline-block;
-      background: #f6a765;
-      color: white;
-      margin: 6px;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      transition: transform 0.3s, background 0.3s;
+    .skills-grid { display:grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.25rem; }
+    @media(max-width:1200px){ .skills-grid{ grid-template-columns: repeat(5, 1fr);} }
+    @media(max-width:980px){ .skills-grid{ grid-template-columns: repeat(4, 1fr);} }
+    @media(max-width:760px){ .skills-grid{ grid-template-columns: repeat(3, 1fr);} }
+    @media(max-width:520px){ .skills-grid{ grid-template-columns: repeat(2, 1fr);} }
+    .skill-card{ 
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 18px 14px;
+      text-align: center;
+      color: #e5e7eb;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform .2s ease, border-color .2s ease;
     }
-    .skills span:hover { transform: scale(1.05); background: #f97316; }
+    .skill-card:hover{ transform: translateY(-2px); border-color: rgba(168,85,247,.6); }
+    .skill-icon{ font-size: 32px; line-height: 1; display:block; margin-bottom: 12px; }
+    .skill-name{ font-weight: 600; letter-spacing: .02em; }
+    .skill-icon-img{ width:36px; height:36px; display:block; margin: 0 auto 10px; filter: brightness(1.15) contrast(1.05); object-fit: contain; }
+    .skill-icon-dark{ filter: brightness(1.8) contrast(1.3) invert(0.1); }
 
     /* ===== Blogs ===== */
     .blogs ul {
@@ -158,17 +289,29 @@
 
     /* ===== Contact ===== */
     #contact { text-align: center; }
+    .contact-wrap{ max-width: 980px; margin: 0 auto; }
+    .contact-card{ background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding: 1.25rem 1.25rem 1rem; box-shadow:0 12px 30px rgba(0,0,0,.35); }
+    .contact-row{ display:grid; grid-template-columns: 1fr auto; align-items:center; gap: 1rem; }
+    @media(max-width:720px){ .contact-row{ grid-template-columns: 1fr; } }
+    .contact-title{ font-size:1.35rem; font-weight:800; letter-spacing:.01em; }
+    .contact-email a{ display:inline-block; margin-top:6px; color:#e5e7eb; text-decoration:none; padding:6px 10px; border-radius:10px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); }
+    .contact-email a:hover{ background: rgba(255,255,255,0.1); }
+    .contact-cta{ display:flex; gap:10px; flex-wrap: wrap; justify-content:flex-end; }
+    .contact-divider{ height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); margin: 12px 0; border:0; }
     .social-links a {
       display: inline-block;
       margin: 8px;
       padding: 10px 20px;
       border-radius: 25px;
-      background: #f6a765;
+      background: linear-gradient(90deg, #a855f7, #f97316);
       color: white;
       font-weight: 600;
-      transition: background 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .social-links a:hover { background: #f97316; }
+    .social-links a:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
 
     /* ===== Footer ===== */
     footer {
@@ -184,131 +327,262 @@
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
     }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+      50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
+    }
+    
+    /* Animation classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-slide-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .animate-slide-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .animate-slide-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .animate-slide-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .animate-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    /* Staggered animations for skills */
+    .skill-card {
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .skill-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    /* Hero animations */
+    .hero-title { animation: fadeInDown 1.2s ease; }
+    .badge { animation: fadeInUp 1.4s ease; animation-delay: 0.2s; animation-fill-mode: both; }
+    .hero-desc { animation: fadeInUp 1.6s ease; animation-delay: 0.4s; animation-fill-mode: both; }
+    .social { animation: fadeInUp 1.8s ease; animation-delay: 0.6s; animation-fill-mode: both; }
+    .hero-buttons { animation: fadeInUp 2s ease; animation-delay: 0.8s; animation-fill-mode: both; }
+    .portrait { animation: scaleIn 1.2s ease; animation-delay: 0.5s; animation-fill-mode: both; }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
     <a href="#blogs">Blogs</a>
-    <a href="#contact">Contact</a>
-  </nav>
+      <a href="#contact">Contact</a>
+    </nav>
 
   <!-- Hero -->
   <div class="hero">
-    <h1>Shubham Maurya</h1>
-    <p>Senior Backend Engineer | 7+ Years Experience | Node.js | Microservices | PostgreSQL | MongoDB | Docker | Kubernetes</p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn-primary">See My Work</a>
-      <a href="SHUBHAM_MAURYA_CV.pdf" class="btn-secondary" target="_blank">Download Resume</a>
+    <div class="hero-copy">
+      <h1 class="hero-title">Hello, I'm <strong>Shubham Maurya</strong></h1>
+      <div class="badge">⚙️ Senior Backend Engineer</div>
+      <p class="hero-desc">
+        Passionate backend engineer with 7+ years building scalable, cloud-native applications.
+        I specialize in Node.js, microservices architecture, and modern database technologies.
+      </p>
+      <div class="social">
+        <a href="mailto:shubhammaurya2385@gmail.com" aria-label="Email"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" alt="Email"></a>
+        <a href="https://github.com/ddev687" target="_blank" rel="noreferrer" aria-label="GitHub"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
+        <a href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn"></a>
+      </div>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-contact">📧 Contact Me</a>
+        <a href="SHUBHAM_MAURYA_CV.pdf" class="btn btn-portfolio" target="_blank">📄 Download Resume</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="portrait">
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGz3MFgYfZmbw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1682063658045?e=1762992000&v=beta&t=nqPXOSW_XoAkal67vuqNyDmwhHpc2rI-ybuwTGLL0so" alt="Shubham Maurya" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+      </div>
     </div>
   </div>
 
   <!-- About -->
   <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>
-        Senior Backend Engineer with expertise in Node.js, Nest.js, PostgreSQL, MongoDB, AWS, Docker, and Kubernetes. 
-        Proven track record in microservices, API design, and cloud infrastructure. 
-        Adept at system optimization, integrations, and mentoring engineers. 
-        Passionate about building scalable, reliable systems that drive business impact.
-      </p>
+    <h2 class="animate-on-scroll">About Me</h2>
+    <div class="panel animate-on-scroll">
+      <div class="animate-slide-right">
+        <!-- <div class="badge">Summary</div> -->
+        <p>
+          I'm a passionate backend engineer who loves solving complex problems and building scalable systems.
+          With over 7 years of experience, I've had the privilege of working with diverse teams and technologies,
+          from startups to enterprise-level applications.
+        </p>
+        <p>
+          My expertise spans across modern backend technologies including Node.js, Nest.js, PostgreSQL, MongoDB,
+          and cloud platforms like AWS and GCP. I enjoy architecting microservices, optimizing database performance,
+          and mentoring fellow developers to help them grow in their careers.
+        </p>
+        <p>
+          When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects,
+          or sharing knowledge through technical blogs. I believe in continuous learning and staying updated with
+          the latest trends in backend development.
+        </p>
+      </div>
     </div>
   </section>
 
+  <!-- Education -->
+  <!-- <section id="education">
+    <h2>Education</h2>
+    <div class="grid-cards">
+      <div class="panel">
+        <div class="top"><h3 style="color:#f97316;">Master of Computer Applications</h3><span class="meta">Uka Tarsadia University</span></div>
+        <p>Jun 2016 – Jun 2018</p>
+      </div>
+      <div class="panel">
+        <div class="top"><h3 style="color:#f97316;">Bachelor of Computer Applications</h3><span class="meta">Veer Narmad South Gujarat University</span></div>
+        <p>Jun 2013 – Jun 2016</p>
+      </div>
+    </div>
+  </section> -->
+
   <!-- Skills -->
   <section id="skills">
-    <h2>Skills</h2>
-    <div class="card">
-      <div class="skills">
-        <span>JavaScript</span><span>TypeScript</span><span>Node.js</span><span>Nest.js</span>
-        <span>Express</span><span>Fastify</span><span>React</span><span>Next.js</span>
-        <span>PostgreSQL</span><span>MongoDB</span><span>DynamoDB</span><span>Redis</span>
-        <span>AWS</span><span>Docker</span><span>Kubernetes</span><span>CI/CD</span>
-        <span>OpenAI APIs</span><span>Claude</span><span>Gemini</span><span>GPTs</span>
-      </div>
+    <h2 class="animate-on-scroll">Skills</h2>
+    <p class="animate-on-scroll" style="text-align:center;color:#9ca3af;max-width:70ch;margin:0 auto 1.5rem;">Here are some of the technologies that are part of my current stack:</p>
+    <div class="skills-grid">
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/javascript" alt="JavaScript"><div class="skill-name">JavaScript</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/typescript" alt="TypeScript"><div class="skill-name">TypeScript</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js"><div class="skill-name">Node.js</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://teamraft.com/wp-content/uploads/nextjs.jpg" alt="Next.js"><div class="skill-name">Next.js</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/nestjs" alt="Nest.js"><div class="skill-name">Nest.js</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/graphql" alt="GraphQL"><div class="skill-name">GraphQL</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/hasura" alt="Hasura"><div class="skill-name">Hasura</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://www.shubhammaurya.me/assets/images/skills/express.svg" alt="Express"><div class="skill-name">Express</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://miro.medium.com/1*V8vAkYA9QOi-gLKh68mtOg.jpeg" alt="Fastify"><div class="skill-name">Fastify</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/react" alt="React"><div class="skill-name">React</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/react" alt="React Native"><div class="skill-name">React Native</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/jest" alt="Jest"><div class="skill-name">Jest</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/openapiinitiative" alt="REST APIs"><div class="skill-name">REST APIs</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL"><div class="skill-name">PostgreSQL</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/mongodb" alt="MongoDB"><div class="skill-name">MongoDB</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://icon2.cleanpng.com/20180817/vog/8968d0640f2c4053333ce7334314ef83.webp" alt="DynamoDB"><div class="skill-name">DynamoDB</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/redis" alt="Redis"><div class="skill-name">Redis</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://svn.apache.org/repos/asf/kafka/site/logos/originals/png/WIDE%20-%20White%20on%20Transparent.png" alt="Kafka"><div class="skill-name">Kafka</div></div>
+      <!-- <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/rabbitmq" alt="RabbitMQ"><div class="skill-name">RabbitMQ</div></div> -->
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/firebase" alt="Firestore / Firebase"><div class="skill-name">Firestore / Firebase</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://icon2.cleanpng.com/20180817/vog/8968d0640f2c4053333ce7334314ef83.webp" alt="AWS"><div class="skill-name">AWS</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/googlecloud" alt="GCP"><div class="skill-name">GCP</div></div>
+      <!-- <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/githubactions" alt="CI/CD"><div class="skill-name">CI/CD</div></div> -->
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/docker" alt="Docker"><div class="skill-name">Docker</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes"><div class="skill-name">Kubernetes</div></div>
+      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/openai" alt="OpenAI APIs"><div class="skill-name">OpenAI APIs</div></div>
     </div>
   </section>
 
   <!-- Experience -->
   <section id="experience">
-    <h2>Experience</h2>
-    <div class="card">
-      <h3>Food Market Hub</h3>
-      <strong>Senior Backend Engineer | Sep 2022 – Present</strong>
-      <ul>
-        <li>Led integrations with 35+ POS/accounting partners.</li>
-        <li>Architected scalable microservices & APIs.</li>
-        <li>Optimized backend services → 30% faster + reduced costs.</li>
-        <li>Collaborated cross-functionally to deliver 7+ major features.</li>
+    <h2 class="animate-on-scroll">Experience</h2>
+    <div class="grid-cards">
+      <div class="panel">
+        <div class="top"><h3 style="color:#f97316;"><a href="https://www.foodmarkethub.com/" target="_blank" rel="noreferrer">Food Market Hub</a></h3><span class="meta">Senior Backend Engineer · Sep 2022 – Present</span></div>
+        <ul>
+          <li>Led integrations with 35+ POS/accounting partners.</li>
+          <li>Architected scalable microservices & APIs.</li>
+          <li>Optimized backend services → 30% faster + reduced costs.</li>
+          <li>Collaborated cross-functionally to deliver 7+ major features.</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>Geeks Invention</h3>
-      <strong>Senior Full-Stack Engineer | Jul 2021 – Aug 2022</strong>
-      <ul>
-        <li>Promoted to Team Lead within 1 month; managed 8 engineers.</li>
-        <li>Built secure API-driven certificate management system.</li>
-        <li>Implemented gamification modules → boosted engagement by 20%.</li>
-        <li>Integrated cross-platform marketplace purchases & credits.</li>
+      <div class="panel">
+        <div class="top"><h3 style="color:#f97316;"><a href="https://www.geeksinvention.com/" target="_blank" rel="noreferrer">Geeks Invention</a></h3><span class="meta">Senior Full-Stack Engineer · Jul 2021 – Aug 2022</span></div>
+        <ul>
+          <li>Promoted to Team Lead within 1 month; managed 8 engineers.</li>
+          <li>Built secure API-driven certificate management system.</li>
+          <li>Implemented gamification modules → boosted engagement by 20%.</li>
+          <li>Integrated cross-platform marketplace purchases & credits.</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>La Net Team Software Solutions</h3>
-      <strong>Software Developer | Dec 2017 – Jun 2021</strong>
-      <ul>
-        <li>Scaled CRM backend from 50 → 10,000+ customers.</li>
-        <li>Built real-time analytics, triggers, and integrations.</li>
-        <li>Developed doctor appointment booking APIs.</li>
-        <li>Hands-on with Docker & Kubernetes scaling.</li>
+      <div class="panel">
+        <div class="top"><h3 style="color:#f97316;"><a href="https://www.lanetteam.com/" target="_blank" rel="noreferrer">La Net Team Software Solutions</a></h3><span class="meta">Software Developer · Dec 2017 – Jun 2021</span></div>
+        <ul>
+          <li>Scaled CRM backend from 50 → 10,000+ customers.</li>
+          <li>Built real-time analytics, triggers, and integrations.</li>
+          <li>Developed doctor appointment booking APIs.</li>
+          <li>Hands-on with Docker & Kubernetes scaling.</li>
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- Projects -->
   <section id="projects">
-    <h2>Project</h2>
-    <div class="projects">
-      <div class="card project">
-        <h3>YourDateAI</h3>
-        <p>
-          AI-powered dating assistant (Web + Mobile) built with OpenAI API, Node.js, 
-          Capacitor, and Supabase. Live on Play Store and 
-          <a href="https://yourdateai.com" target="_blank">yourdateai.com</a>. 
-          100+ downloads in first month.
-        </p>
+    <h2 class="animate-on-scroll">Personal Project</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="top"><h3>YourDateAI</h3><a class="btn-visit" href="https://yourdateai.com/" target="_blank" rel="noreferrer">Visit</a></div>
+        <div class="meta">OpenAI API | Capacitor | Node.js | Supabase</div>
+        <p>AI-powered dating assistant for Web and Mobile. Launched on Play Store with 100+ downloads in the first month.</p>
+        <div class="tags"><span class="tag">AI</span><span class="tag">Mobile</span><span class="tag">Web</span></div>
       </div>
     </div>
   </section>
 
   <!-- Blogs -->
   <section id="blogs">
-    <h2>Blogs</h2>
-    <div class="card blogs">
-      <ul>
-        <li><a href="https://medium.com/@shubhammaurya2385/caching-redis-why-we-built-our-own-database-cache-2c302e6de599" target="_blank">🧩 Caching ≠ Redis: Why We Built Our Own Database Cache</a></li>
-      </ul>
+    <h2 class="animate-on-scroll">Blogs</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <div class="top"><h3>Caching ≠ Redis</h3><a class="btn-visit" href="https://medium.com/@shubhammaurya2385/caching-redis-why-we-built-our-own-database-cache-2c302e6de599" target="_blank">Read</a></div>
+        <div class="meta">Architecture | Performance</div>
+        <p>Why we built a tailored database cache instead of using Redis.</p>
+        <div class="tags"><span class="tag">Caching</span><span class="tag">Hasura</span><span class="tag">PostgreSQL</span></div>
+      </div>
     </div>
   </section>
 
   <!-- Contact -->
   <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <p>Email: <a href="mailto:shubhammaurya2385@gmail.com">shubhammaurya2385@gmail.com</a></p>
-      <p>Phone: +91 7621069675</p>
+    <h2 class="animate-on-scroll">Contact</h2>
+    <div class="panel animate-on-scroll" style="text-align:center;">
+    <p>Email: <a href="mailto:shubhammaurya2385@gmail.com">shubhammaurya2385@gmail.com</a></p>
+    <p>Phone: +91 7621069675</p>
       <div class="social-links">
-        <a href="https://github.com/ddev687" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank">LinkedIn</a>
+        <a href="https://github.com/ddev687" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </div>
   </section>
@@ -318,8 +592,46 @@
   </footer>
 
   <script>
-    // Reveal animation on scroll
+    // Enhanced scroll animations
+    const animateElements = document.querySelectorAll('.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale');
+    const skillCards = document.querySelectorAll('.skill-card');
     const cards = document.querySelectorAll('.card');
+    
+    // Intersection Observer for scroll animations
+    const animationObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe all animated elements
+    animateElements.forEach(el => animationObserver.observe(el));
+    
+    // Staggered animation for skill cards
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const cards = entry.target.querySelectorAll('.skill-card');
+          cards.forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('visible');
+            }, index * 100); // 100ms delay between each card
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      skillObserver.observe(skillsSection);
+    }
+    
+    // Original card reveal animation
     const revealOnScroll = () => {
       const triggerBottom = window.innerHeight * 0.85;
       cards.forEach(card => {
@@ -341,12 +653,23 @@
         if (entry.isIntersecting) {
           navLinks.forEach(link => link.classList.remove("active"));
           const id = entry.target.getAttribute("id");
-          document.querySelector(`nav a[href="#${id}"]`).classList.add("active");
+          const navLink = document.querySelector(`nav a[href="#${id}"]`);
+          if (navLink) navLink.classList.add("active");
         }
       });
     }, { threshold: 0.6 });
 
     sections.forEach(section => observer.observe(section));
+    
+    // Add glow effect on hover for skill cards
+    skillCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.animation = 'glow 1.5s ease-in-out infinite';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.animation = '';
+      });
+    });
   </script>
 </body>
 </html>
