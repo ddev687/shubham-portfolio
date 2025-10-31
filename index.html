@@ -287,6 +287,22 @@
       color: #7c2d12;
     }
 
+    /* Horizontal scroll row (carousel-like) for Blogs */
+    .blogs-row {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 6px; /* space for scrollbar if shown */
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .blogs-row::-webkit-scrollbar { display: none; }
+    .blogs-row { -ms-overflow-style: none; scrollbar-width: none; }
+    .blogs-row .card {
+      flex: 0 0 clamp(280px, 30%, 360px);
+      scroll-snap-align: start;
+    }
+
     /* ===== Contact ===== */
     #contact { text-align: center; }
     .contact-wrap{ max-width: 980px; margin: 0 auto; }
@@ -410,7 +426,7 @@
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-    <a href="#blogs">Blogs</a>
+      <a href="#blogs">Blogs</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -564,7 +580,7 @@
   <!-- Blogs -->
   <section id="blogs">
     <h2 class="animate-on-scroll">Blogs</h2>
-    <div class="grid-cards">
+    <div class="grid-cards blogs-row">
       <div class="card">
         <div class="top"><h3>Caching ≠ Redis</h3><a class="btn-visit" href="https://medium.com/@shubhammaurya2385/caching-redis-why-we-built-our-own-database-cache-2c302e6de599" target="_blank">Read</a></div>
         <div class="meta">Architecture | Performance</div>
@@ -576,6 +592,18 @@
         <div class="meta">PostgreSQL | Performance | Auto Vacuum</div>
         <p>Fixing Postgres slowness caused by auto vacuum and misbehaving caches.</p>
         <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Performance</span><span class="tag">Caching</span></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>How to Scale Socket.IO for High-Performance Real-Time Systems</h3><a class="btn-visit" href="https://medium.com/@shubhammaurya2385/how-to-scale-socket-io-for-high-performance-real-time-systems-7da745f69202" target="_blank" rel="noreferrer">Read</a></div>
+        <div class="meta">Real-time | Scaling | Architecture</div>
+        <p>Patterns and infrastructure to scale Socket.IO for low-latency realtime apps.</p>
+        <div class="tags"><span class="tag">Socket.IO</span><span class="tag">Real-time</span><span class="tag">Scaling</span></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>PostgreSQL 18’s Secret Weapon</h3><a class="btn-visit" href="https://medium.com/gitconnected/postgresql-18s-secret-weapon-how-async-i-o-made-our-queries-12-faster-5edaf3d39386" target="_blank" rel="noreferrer">Read</a></div>
+        <div class="meta">PostgreSQL | Performance | Async I/O</div>
+        <p>How async I/O made queries up to 12× faster and boosted throughput.</p>
+        <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Performance</span><span class="tag">Async I/O</span></div>
       </div>
     </div>
   </section>
@@ -617,6 +645,8 @@
     
     // Observe all animated elements
     animateElements.forEach(el => animationObserver.observe(el));
+    // Observe cards too so they reveal when horizontally scrolled into view
+    cards.forEach(el => animationObserver.observe(el));
     
     // Staggered animation for skill cards
     const skillObserver = new IntersectionObserver((entries) => {
