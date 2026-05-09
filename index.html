@@ -4,730 +4,1292 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shubham Maurya | Portfolio</title>
-  <meta name="description" content="Portfolio of Shubham Maurya, Senior Backend Engineer with 7+ years scaling high-throughput systems. Expert in Node.js, TypeScript, NestJS, PostgreSQL, Docker, Kubernetes, and Gen-AI integration.">
-  <meta name="keywords" content="Backend Engineer, Node.js, TypeScript, NestJS, Microservices, PostgreSQL, Docker, Kubernetes, Cloud, AI, Portfolio">
+  <meta name="description" content="Portfolio of Shubham Maurya, Senior Backend Engineer with 7+ years scaling high-throughput systems.">
   <meta property="og:title" content="Shubham Maurya | Portfolio">
-  <meta property="og:description" content="Senior Backend Engineer | Node.js | Microservices | Cloud-Native Systems">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== Base Styles ===== */
-    * { box-sizing: border-box; }
+    /* ══════════ Cursor IDE Theme Variables ══════════ */
     :root {
-      --bg-start: #1a1a2e;
-      --bg-end: #16213e;
-      --accent: #f97316; /* orange */
-      --accent-2: #a855f7; /* purple */
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --btn-blue: #2563eb;
-      --btn-red: #ef4444;
-    }
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(1200px 600px at 20% 20%, #2d2d5a, transparent 60%),
-                  radial-gradient(900px 500px at 85% 15%, #3a3a6b, transparent 55%),
-                  linear-gradient(135deg, var(--bg-start), var(--bg-end));
-      color: var(--text);
-      scroll-behavior: smooth;
-      min-height: 100vh;
-    }
-    h1, h2, h3 { margin: 0; }
-    a { text-decoration: none; }
-
-    section {
-      max-width: 1200px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-      scroll-margin-top: 80px; /* ✅ prevent titles from being hidden */
-    }
-
-    /* ===== Navbar ===== */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(20, 20, 40, 0.6);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      padding: 0.9rem 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    nav a {
-      margin: 0 16px;
-      color: #e5e7eb;
-      font-weight: 600;
-      font-size: 0.95rem;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-    nav a:hover { color: #ffffff; }
-    nav a.active::after,
-    nav a:hover::after {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; bottom: -10px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      --bg:        #0d0d0f;
+      --sidebar:   #131315;
+      --titlebar:  #1a1a1c;
+      --activity:  #1a1a1c;
+      --tabs:      #161618;
+      --tab-active:#0d0d0f;
+      --border:    #27272a;
+      --text:      #e4e4e7;
+      --dim:       #71717a;
+      --sel:       rgba(168,85,247,0.18);
+      --hover:     rgba(255,255,255,0.04);
+      --panel:     #141416;
+      --ai-bg:     #111113;
+      /* Syntax — Cursor / One Dark inspired */
+      --c-comment: #52525b;
+      --c-kw:      #c084fc;
+      --c-str:     #fb923c;
+      --c-fn:      #fbbf24;
+      --c-num:     #34d399;
+      --c-type:    #67e8f9;
+      --c-var:     #a5f3fc;
+      --c-prop:    #c4b5fd;
+      --c-op:      #e4e4e7;
+      --c-ht:      #67e8f9;
+      --c-ha:      #a5f3fc;
+      --c-hv:      #fb923c;
+      /* Brand */
+      --accent:    #a855f7;
+      --accent2:   #6366f1;
+      --accent-glow: rgba(168,85,247,0.25);
+      --ln-w:      52px;
     }
 
-    /* Links inside cards/panels inherit heading color */
-    .card a, .panel a { color: inherit; text-decoration: none; }
-    .card a:hover, .panel a:hover { text-decoration: underline; text-underline-offset: 2px; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
 
-    /* ===== Hero ===== */
-    .hero {
-      position: relative;
-      min-height: 88vh;
+    /* ══════ Window Chrome ══════ */
+    .window {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 2rem;
-      align-items: center;
-      padding: 4rem 1.5rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .hero::before {
-      /* wavy lines background */
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(600px 300px at 70% 10%, rgba(59,130,246,0.08), transparent 60%),
-                  radial-gradient(500px 260px at 90% 30%, rgba(168,85,247,0.08), transparent 60%);
-      pointer-events: none;
-      z-index: -1;
-    }
-    .hero-title { font-size: 2.75rem; line-height: 1.15; animation: fadeInDown 0.9s ease; }
-    .hero-title strong {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      font-weight: 700;
-      display: inline-block;
-    }
-    .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 12px; border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 0.85rem; color: #eaeaea;
-      margin: 16px 0 18px;
-    }
-    .hero-desc { color: var(--muted); max-width: 56ch; }
-    .social { margin-top: 16px; display: flex; gap: 10px; }
-    .social::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(200px 100px at 50% 0%, rgba(168, 85, 247, 0.1), transparent 60%);
-      pointer-events: none;
-      z-index: -1;
-    }
-    .social a { 
-      color: #e5e7eb; 
-      opacity: 0.9; 
-      transition: transform .2s, opacity .2s, box-shadow .2s; 
-      padding: 12px; 
-      border-radius: 50%; 
-      background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .social a:hover { 
-      transform: translateY(-2px); 
-      opacity: 1; 
-      background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.15));
-      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
-    }
-    .social-icon { 
-      width: 24px; 
-      height: 24px; 
-      display: block; 
-      filter: brightness(1.1) contrast(1.1);
-    }
-    .hero-buttons { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 10px; font-weight: 600; border: 1px solid transparent; }
-    .btn-contact { background: var(--btn-blue); color: white; }
-    .btn-contact:hover { filter: brightness(1.1); }
-    .btn-portfolio { background: var(--btn-red); color: white; }
-    .btn-portfolio:hover { filter: brightness(1.1); }
-    .hero-image { position: relative; display: grid; place-items: center; }
-    .portrait {
-      width: clamp(220px, 40vw, 420px);
-      height: clamp(260px, 48vw, 520px);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
-      display: grid; place-items: center;
-      color: #cbd5e1;
-    }
-    .portrait span { opacity: .7; }
-    @media (max-width: 960px) {
-      .hero { grid-template-columns: 1fr; text-align: left; padding-top: 6rem; }
-      .hero-image { order: -1; margin-bottom: 1rem; }
+      grid-template-rows: 38px 1fr 24px;
+      height: 100vh; width: 100vw;
+      overflow: hidden;
     }
 
-    /* ===== Section Headings ===== */
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      text-align: center;
+    /* ── Title Bar ── */
+    .titlebar {
+      background: var(--titlebar);
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--border);
+      gap: 0;
+      position: relative;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .traffic { display: flex; gap: 7px; align-items: center; margin-right: 16px; }
+    .tl { width: 12px; height: 12px; border-radius: 50%; }
+    .tl-r { background: #ff5f57; } .tl-y { background: #febc2e; } .tl-g { background: #28c840; }
+    .cursor-logo {
+      display: flex; align-items: center; gap: 6px; margin-right: 14px;
+      font-size: 13px; font-weight: 600; color: #e4e4e7; letter-spacing: -.01em;
+    }
+    .cursor-logo svg { flex-shrink: 0; }
+    .tb-menu { display: flex; gap: 1px; }
+    .tb-mi { padding: 3px 8px; font-size: 12px; color: #a1a1aa; cursor: pointer; border-radius: 4px; }
+    .tb-mi:hover { background: var(--hover); color: var(--text); }
+    .tb-center {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-size: 11.5px; color: #52525b; white-space: nowrap;
+    }
+    .tb-right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+    .tb-model {
+      display: flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 5px;
+      background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.25);
+      font-size: 11.5px; color: var(--accent); font-family: 'JetBrains Mono', monospace;
+      cursor: pointer;
+    }
+    .tb-model:hover { background: rgba(168,85,247,0.2); }
+    .tb-icon { opacity: 0.5; cursor: pointer; transition: opacity .15s; }
+    .tb-icon:hover { opacity: 0.9; }
+
+    /* ── Body ── */
+    .body {
+      display: grid;
+      grid-template-columns: 46px 210px 1fr 0px;
+      overflow: hidden;
+      transition: grid-template-columns 0.2s ease;
+    }
+    .body.ai-open { grid-template-columns: 46px 210px 1fr 272px; }
+
+    /* ── Activity Bar ── */
+    .actbar {
+      background: var(--activity);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 6px 0; gap: 2px;
+      border-right: 1px solid var(--border);
+    }
+    .ai-btn {
+      width: 34px; height: 34px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--dim); transition: all .15s;
       position: relative;
     }
-    h2::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      margin: 8px auto 0;
-      border-radius: 2px;
+    .ai-btn:hover { color: var(--text); background: var(--hover); }
+    .ai-btn.active { color: var(--accent); }
+    .ai-btn.active::before {
+      content: ''; position: absolute; left: -6px; top: 7px; bottom: 7px;
+      width: 2px; background: var(--accent); border-radius: 0 2px 2px 0;
+    }
+    .act-spacer { flex: 1; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: var(--sidebar);
+      border-right: 1px solid var(--border);
+      overflow-y: auto; overflow-x: hidden;
+      display: flex; flex-direction: column;
+    }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+    .sb-sect { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: #52525b; padding: 10px 12px 4px; text-transform: uppercase; }
+    .sb-folder { display: flex; align-items: center; gap: 5px; padding: 2px 10px 2px 12px; font-size: 12.5px; color: #71717a; user-select: none; }
+    .sb-file {
+      display: flex; align-items: center; gap: 6px;
+      padding: 3px 8px 3px 28px; font-size: 12.5px; color: #a1a1aa;
+      cursor: pointer; user-select: none; transition: background .1s;
+    }
+    .sb-file:hover { background: var(--hover); color: var(--text); }
+    .sb-file.active { background: rgba(168,85,247,0.12); color: var(--text); }
+    .sb-file.active::before {
+      /* small purple dot */
+    }
+    .sb-div { height: 1px; background: var(--border); margin: 5px 0; }
+
+    /* ── Editor ── */
+    .editor-wrap {
+      display: grid;
+      grid-template-rows: 36px 22px 1fr;
+      overflow: hidden;
     }
 
-    /* ===== Cards ===== */
-    .card {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      margin-bottom: 1.5rem;
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      color: #e5e7eb;
-      border: 1px solid rgba(255,255,255,0.12);
+    /* Tab Bar */
+    .tabbar {
+      background: var(--tabs);
+      display: flex; align-items: stretch;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto; scrollbar-width: none;
     }
-    .card.visible { opacity: 1; transform: translateY(0); }
-    .card h3 { color: #f97316; margin-bottom: .5rem; font-weight: 600; }
-    .panel { 
-      background: rgba(255,255,255,0.05); 
-      border: 1px solid rgba(255,255,255,0.12); 
-      border-radius: 15px; 
-      padding: 1.25rem; 
-      color: #e5e7eb;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    .tabbar::-webkit-scrollbar { display: none; }
+    .tab {
+      display: flex; align-items: center; gap: 6px;
+      padding: 0 14px; font-size: 12.5px; color: #71717a;
+      cursor: pointer; white-space: nowrap;
+      border-right: 1px solid var(--border);
+      border-top: 1px solid transparent;
+      transition: color .1s; user-select: none;
+    }
+    .tab:hover { color: #a1a1aa; background: rgba(255,255,255,0.02); }
+    .tab.active { background: var(--tab-active); color: var(--text); border-top-color: var(--accent); }
+    .tab-x { opacity: .35; font-size: 14px; line-height: 1; padding: 1px 2px; border-radius: 3px; }
+    .tab:hover .tab-x, .tab.active .tab-x { opacity: .65; }
+    .tab-x:hover { background: rgba(255,255,255,.1); opacity: 1 !important; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex; align-items: center; gap: 5px;
+      padding: 0 14px; font-size: 12px; color: #52525b;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+    }
+    .bc { color: #a1a1aa; cursor: pointer; }
+    .bc:hover { color: var(--text); }
+    .bc-sep { font-size: 11px; color: #3f3f46; }
+
+    /* Editor Content */
+    .editor {
+      overflow-y: auto; overflow-x: hidden;
+      background: var(--bg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px; line-height: 1.65;
+    }
+    .editor::-webkit-scrollbar { width: 8px; }
+    .editor::-webkit-scrollbar-thumb { background: #3f3f46; }
+
+    /* Panels */
+    .pnl { display: none; }
+    .pnl.active { display: block; }
+
+    /* Code lines */
+    .cl { display: flex; min-height: 21px; }
+    .ln { min-width: var(--ln-w); text-align: right; padding-right: 18px; color: #3f3f46; user-select: none; font-size: 12.5px; flex-shrink: 0; }
+    .lc { flex: 1; padding-right: 28px; white-space: pre-wrap; word-break: break-word; }
+
+    /* Syntax tokens */
+    .kw   { color: var(--c-kw); }
+    .fn   { color: var(--c-fn); }
+    .str  { color: var(--c-str); }
+    .num  { color: var(--c-num); }
+    .ty   { color: var(--c-type); }
+    .va   { color: var(--c-var); }
+    .cm   { color: var(--c-comment); font-style: italic; }
+    .pr   { color: var(--c-prop); }
+    .pu   { color: var(--c-op); }
+    .ht   { color: var(--c-ht); }
+    .ha   { color: var(--c-ha); }
+    .hv   { color: var(--c-hv); }
+
+    /* Cursor blink */
+    .cur {
+      display: inline-block; width: 2px; height: 1.1em;
+      background: var(--accent); vertical-align: text-bottom;
+      animation: blink 1s step-end infinite; margin-left: 1px;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+    /* ══════ AI Panel ══════ */
+    .ai-panel {
+      background: var(--ai-bg);
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .ai-panel-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .ai-tabs { display: flex; gap: 2px; }
+    .ai-tab {
+      padding: 3px 10px; border-radius: 5px;
+      font-size: 12px; color: #71717a; cursor: pointer;
+      transition: all .15s; font-family: 'Inter', sans-serif;
+    }
+    .ai-tab:hover { color: var(--text); background: var(--hover); }
+    .ai-tab.active { color: var(--text); background: rgba(168,85,247,0.15); }
+    .ai-close { cursor: pointer; opacity: .5; transition: opacity .15s; }
+    .ai-close:hover { opacity: 1; }
+    .ai-messages {
+      flex: 1; overflow-y: auto; padding: 12px 12px 6px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .ai-messages::-webkit-scrollbar { width: 3px; }
+    .ai-messages::-webkit-scrollbar-thumb { background: #3f3f46; }
+    .msg { display: flex; flex-direction: column; gap: 5px; }
+    .msg-user {
+      align-self: flex-end;
+      background: rgba(168,85,247,0.15);
+      border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 10px 10px 2px 10px;
+      padding: 8px 12px;
+      font-size: 12px; color: var(--text);
+      max-width: 85%;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.5;
+    }
+    .msg-ai {
+      align-self: flex-start;
+      max-width: 95%;
+    }
+    .msg-ai-label {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10.5px; color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 4px;
+    }
+    .msg-ai-bubble {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 2px 10px 10px 10px;
+      padding: 9px 12px;
+      font-size: 12px; color: #d4d4d8;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    .msg-ai-bubble strong { color: var(--accent); font-weight: 600; }
+    .msg-ai-bubble code {
+      background: rgba(168,85,247,0.1);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 3px; padding: 1px 5px;
+      font-family: 'JetBrains Mono', monospace; font-size: 11px;
+      color: var(--c-var);
+    }
+    .msg-ai-list { list-style: none; padding: 0; margin: 6px 0 0; }
+    .msg-ai-list li { padding-left: 14px; position: relative; margin-bottom: 3px; font-size: 11.5px; }
+    .msg-ai-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+    .ai-suggest {
+      display: flex; flex-direction: column; gap: 5px;
+      padding: 6px 0;
+    }
+    .ai-suggest-btn {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 6px;
+      font-size: 11.5px; color: #a1a1aa;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      cursor: pointer; transition: all .15s;
+      font-family: 'Inter', sans-serif;
+      text-align: left;
+    }
+    .ai-suggest-btn:hover { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--text); }
+    .ai-input-wrap {
+      border-top: 1px solid var(--border);
+      padding: 10px 12px;
+      flex-shrink: 0;
+    }
+    .ai-input-box {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 10px;
+      transition: border-color .15s;
+    }
+    .ai-input-box:focus-within { border-color: rgba(168,85,247,0.4); }
+    .ai-input {
+      flex: 1; background: none; border: none; outline: none;
+      font-size: 12px; color: var(--text);
+      font-family: 'Inter', sans-serif;
+      caret-color: var(--accent);
+    }
+    .ai-input::placeholder { color: #52525b; }
+    .ai-send {
+      width: 26px; height: 26px; border-radius: 6px;
+      background: rgba(168,85,247,0.2);
+      border: 1px solid rgba(168,85,247,0.3);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .15s; color: var(--accent);
+      font-size: 13px;
+    }
+    .ai-send:hover { background: rgba(168,85,247,0.35); }
+    .ai-hint {
+      font-size: 10px; color: #3f3f46; text-align: center;
+      margin-top: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .kbd {
+      display: inline-block; padding: 1px 5px; border-radius: 3px;
+      background: rgba(255,255,255,0.06); border: 1px solid #3f3f46;
+      font-size: 10px; color: #71717a;
     }
 
-    /* ===== Projects ===== */
-    .grid-cards { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    @media (max-width: 1100px) { .grid-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 720px) { .grid-cards { grid-template-columns: 1fr; } }
-    .card .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .card .meta { color: #9ca3af; font-size: .9rem; margin-top: 2px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-    .tag { 
-      padding: 4px 10px; 
-      border-radius: 999px; 
-      background: rgba(255,255,255,0.08); 
-      border: 1px solid rgba(255,255,255,0.12); 
-      font-size: .8rem; 
-      color: #cbd5e1; 
+    /* ══════ Status Bar ══════ */
+    .statusbar {
+      background: var(--titlebar);
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 8px;
+      font-size: 11.5px; color: #71717a;
+      user-select: none;
     }
-    .actions { margin-top: 14px; display: flex; gap: 10px; }
-    .btn-visit { 
-      display: inline-flex; 
-      align-items: center; 
-      gap: 6px; 
-      padding: 8px 16px; 
-      border-radius: 20px; 
-      font-weight: 600; 
-      color: white; 
-      background: linear-gradient(90deg, #a855f7, #f97316); 
-      border: 0; 
-      font-size: 0.9rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .sb-l, .sb-r { display: flex; align-items: center; gap: 1px; }
+    .sb-i {
+      display: flex; align-items: center; gap: 4px;
+      padding: 0 7px; height: 24px;
+      cursor: pointer; border-radius: 3px;
+      transition: background .1s;
     }
-    .btn-visit:hover { 
-      transform: translateY(-1px); 
-      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    .sb-i:hover { background: var(--hover); color: var(--text); }
+    .sb-accent { color: var(--accent) !important; }
+    .sb-ai-badge {
+      background: rgba(168,85,247,0.15);
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 4px; padding: 1px 8px;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ===== Skills ===== */
-    .skills-grid { display:grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.25rem; }
-    @media(max-width:1200px){ .skills-grid{ grid-template-columns: repeat(5, 1fr);} }
-    @media(max-width:980px){ .skills-grid{ grid-template-columns: repeat(4, 1fr);} }
-    @media(max-width:760px){ .skills-grid{ grid-template-columns: repeat(3, 1fr);} }
-    @media(max-width:520px){ .skills-grid{ grid-template-columns: repeat(2, 1fr);} }
-    .skill-card{ 
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 18px 14px;
-      text-align: center;
-      color: #e5e7eb;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      transition: transform .2s ease, border-color .2s ease;
+    /* ══════ HOME Panel ══════ */
+    .hero-visual {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 36px; align-items: center;
+      padding: 16px calc(var(--ln-w) + 2px) 34px;
     }
-    .skill-card:hover{ transform: translateY(-2px); border-color: rgba(168,85,247,.6); }
-    .skill-icon{ font-size: 32px; line-height: 1; display:block; margin-bottom: 12px; }
-    .skill-name{ font-weight: 600; letter-spacing: .02em; }
-    .skill-icon-img{ width:36px; height:36px; display:block; margin: 0 auto 10px; filter: brightness(1.15) contrast(1.05); object-fit: contain; }
-    .skill-icon-dark{ filter: brightness(1.8) contrast(1.3) invert(0.1); }
-
-    /* ===== Blogs ===== */
-    .blogs ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .hero-name { font-family: 'Inter', sans-serif; font-size: 2.5rem; font-weight: 700; color: #fff; line-height: 1.1; }
+    .hero-name-grad { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-role { font-size: .98rem; color: var(--c-var); margin: 10px 0 14px; min-height: 1.5em; }
+    .hero-desc { font-family: 'Inter', sans-serif; font-size: .88rem; color: #71717a; max-width: 50ch; line-height: 1.75; }
+    .hero-stats { display: flex; gap: 22px; margin-top: 17px; }
+    .stat-n { font-size: 1.3rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+    .stat-l { font-family: 'Inter', sans-serif; font-size: .7rem; color: #52525b; text-transform: uppercase; letter-spacing: .06em; }
+    .hero-soc { display: flex; gap: 8px; margin-top: 15px; }
+    .soc-a {
+      width: 33px; height: 33px; border-radius: 7px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: all .2s;
     }
-    .blogs li {
-      margin-bottom: 12px;
+    .soc-a:hover { background: rgba(168,85,247,0.15); border-color: rgba(168,85,247,0.4); }
+    .soc-a img { width: 16px; height: 16px; filter: invert(1); opacity: .7; }
+    .hero-btns { display: flex; gap: 9px; margin-top: 17px; flex-wrap: wrap; }
+    .btn-a {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 17px; border-radius: 6px;
+      font-size: 12.5px; font-family: 'Inter', sans-serif; font-weight: 500;
+      text-decoration: none; transition: all .2s; cursor: pointer;
     }
-    .blogs a {
-      color: #f97316;
-      font-weight: 600;
-      transition: color 0.2s;
+    .btn-fill { background: var(--accent); color: #fff; }
+    .btn-fill:hover { background: #9333ea; }
+    .btn-out { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-out:hover { background: var(--hover); border-color: #52525b; }
+    .portrait-wrap { position: relative; flex-shrink: 0; }
+    .portrait {
+      width: 185px; height: 205px;
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 0 4px rgba(168,85,247,0.06), 0 20px 60px rgba(0,0,0,.6);
     }
-    .blogs a:hover {
-      color: #7c2d12;
-    }
-
-    /* Horizontal scroll row (carousel-like) for Blogs */
-    .blogs-row {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      padding-bottom: 6px; /* space for scrollbar if shown */
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .blogs-row::-webkit-scrollbar { display: none; }
-    .blogs-row { -ms-overflow-style: none; scrollbar-width: none; }
-    .blogs-row .card {
-      flex: 0 0 clamp(280px, 30%, 360px);
-      scroll-snap-align: start;
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .portrait-chip {
+      position: absolute; bottom: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 5px; padding: 3px 10px;
+      font-size: 11px; color: var(--c-comment); white-space: nowrap;
+      font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ===== Contact ===== */
-    #contact { text-align: center; }
-    .contact-wrap{ max-width: 980px; margin: 0 auto; }
-    .contact-card{ background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding: 1.25rem 1.25rem 1rem; box-shadow:0 12px 30px rgba(0,0,0,.35); }
-    .contact-row{ display:grid; grid-template-columns: 1fr auto; align-items:center; gap: 1rem; }
-    @media(max-width:720px){ .contact-row{ grid-template-columns: 1fr; } }
-    .contact-title{ font-size:1.35rem; font-weight:800; letter-spacing:.01em; }
-    .contact-email a{ display:inline-block; margin-top:6px; color:#e5e7eb; text-decoration:none; padding:6px 10px; border-radius:10px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); }
-    .contact-email a:hover{ background: rgba(255,255,255,0.1); }
-    .contact-cta{ display:flex; gap:10px; flex-wrap: wrap; justify-content:flex-end; }
-    .contact-divider{ height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); margin: 12px 0; border:0; }
-    .social-links a {
-      display: inline-block;
-      margin: 8px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      background: linear-gradient(90deg, #a855f7, #f97316);
-      color: white;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
+    /* ══════ ABOUT Panel ══════ */
+    .prose {
+      font-family: 'Inter', sans-serif;
+      padding: 16px calc(var(--ln-w) + 2px) 34px;
+      max-width: 860px;
     }
-    .social-links a:hover { 
-      transform: translateY(-2px); 
-      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-    }
+    .prose h3 { color: var(--accent); font-size: 1.05rem; font-weight: 600; margin: 20px 0 9px; }
+    .prose h3:first-child { margin-top: 0; }
+    .prose p { color: #a1a1aa; line-height: 1.8; font-size: .88rem; margin-bottom: 12px; }
+    .edu-d { color: var(--c-fn); font-weight: 600; font-size: .88rem; }
+    .edu-s { color: #52525b; font-size: .8rem; font-family: 'JetBrains Mono', monospace; }
 
-    /* ===== Footer ===== */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #1f2937;
-      color: white;
-      margin-top: 3rem;
+    /* ══════ EXPERIENCE Panel ══════ */
+    .exp-card {
+      margin: 0 calc(var(--ln-w) + 2px) 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      border-radius: 6px; padding: 15px 17px;
+      transition: border-left-color .2s;
     }
+    .exp-card:hover { border-left-color: var(--accent2); }
+    .exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+    .exp-co { font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .exp-co:hover { text-decoration: underline; }
+    .exp-role { font-size: .8rem; color: var(--c-var); font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+    .exp-per { font-size: .77rem; color: #52525b; margin-top: 2px; }
+    .exp-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--c-num); background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25); padding: 2px 7px; border-radius: 3px; }
+    .exp-div { height: 1px; background: var(--border); margin: 11px 0; }
+    .exp-ul { list-style: none; }
+    .exp-ul li { font-family: 'Inter', sans-serif; font-size: .84rem; color: #a1a1aa; line-height: 1.7; padding-left: 15px; position: relative; margin-bottom: 4px; }
+    .exp-ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
 
-    /* ===== Animations ===== */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ══════ PROJECTS Panel ══════ */
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 13px; padding: 10px calc(var(--ln-w) + 2px) 34px;
     }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-50px); }
-      to { opacity: 1; transform: translateX(0); }
+    .proj-card {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 6px; padding: 15px; transition: all .2s;
     }
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(50px); }
-      to { opacity: 1; transform: translateX(0); }
+    .proj-card:hover { background: rgba(255,255,255,0.04); border-color: rgba(168,85,247,0.35); }
+    .proj-n { font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 600; color: var(--c-fn); margin-bottom: 2px; }
+    .proj-co { font-size: .73rem; color: #52525b; font-family: 'JetBrains Mono', monospace; }
+    .proj-st { font-size: .73rem; color: var(--c-comment); font-family: 'JetBrains Mono', monospace; margin: 6px 0; }
+    .proj-desc { font-family: 'Inter', sans-serif; font-size: .82rem; color: #71717a; line-height: 1.6; margin-bottom: 9px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
+    .proj-tag { padding: 2px 7px; border-radius: 3px; background: rgba(196,181,253,0.08); border: 1px solid rgba(196,181,253,0.2); font-size: 10.5px; font-family: 'JetBrains Mono', monospace; color: var(--c-prop); }
+    .proj-link { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-family: 'Inter', sans-serif; color: var(--accent); text-decoration: none; padding: 3px 9px; border-radius: 3px; border: 1px solid rgba(168,85,247,0.35); transition: all .2s; }
+    .proj-link:hover { background: rgba(168,85,247,0.12); }
+
+    /* ══════ SKILLS Panel ══════ */
+    .sk-visual { padding: 10px calc(var(--ln-w) + 2px) 34px; }
+    .sk-cat { margin-bottom: 20px; }
+    .sk-cat-lbl { font-size: 11px; color: var(--c-comment); font-style: italic; margin-bottom: 8px; }
+    .sk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: 7px; }
+    .sk-item {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 6px; padding: 10px 6px; text-align: center;
+      cursor: default; transition: all .2s;
     }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+    .sk-item:hover { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.35); transform: translateY(-2px); }
+    .sk-item img { width: 26px; height: 26px; object-fit: contain; display: block; margin: 0 auto 6px; }
+    .sk-item-n { font-family: 'Inter', sans-serif; font-size: 10px; color: #a1a1aa; line-height: 1.3; }
+
+    /* ══════ BLOGS Panel ══════ */
+    .blog-list { padding: 10px calc(var(--ln-w) + 2px) 34px; display: flex; flex-direction: column; gap: 10px; }
+    .blog-item { display: block; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; text-decoration: none; transition: all .2s; }
+    .blog-item:hover { background: rgba(255,255,255,0.04); border-color: rgba(168,85,247,0.35); }
+    .blog-t { font-family: 'Inter', sans-serif; font-size: .88rem; font-weight: 600; color: var(--c-fn); margin-bottom: 2px; }
+    .blog-m { font-size: .74rem; color: #52525b; font-family: 'JetBrains Mono', monospace; margin-bottom: 5px; }
+    .blog-d { font-family: 'Inter', sans-serif; font-size: .81rem; color: #71717a; line-height: 1.55; }
+    .blog-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 7px; }
+    .blog-tag { padding: 1px 7px; border-radius: 3px; background: rgba(52,211,153,0.07); border: 1px solid rgba(52,211,153,0.2); font-size: 10.5px; font-family: 'JetBrains Mono', monospace; color: var(--c-num); }
+
+    /* ══════ CONTACT Panel ══════ */
+    .ct-wrap { padding: 10px calc(var(--ln-w) + 2px) 34px; }
+    .ct-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 7px; padding: 22px 24px; max-width: 560px; }
+    .ct-title { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
+    .ct-sub { font-size: 11.5px; color: var(--c-comment); font-family: 'JetBrains Mono', monospace; margin-bottom: 17px; font-style: italic; }
+    .ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .ct-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #52525b; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+    .ct-val { font-family: 'Inter', sans-serif; font-size: .86rem; color: #a1a1aa; }
+    .ct-val a { color: var(--c-var); text-decoration: none; }
+    .ct-val a:hover { text-decoration: underline; }
+    .ct-links { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+    .ct-link { display: inline-flex; align-items: center; gap: 6px; padding: 7px 15px; border-radius: 5px; font-size: 12.5px; font-family: 'Inter', sans-serif; font-weight: 500; text-decoration: none; background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; transition: all .2s; }
+    .ct-link:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .ct-link img { width: 14px; filter: invert(1); }
+
+    /* ══════ Command Palette ══════ */
+    .cp-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; justify-content: center; padding-top: 90px; }
+    .cp-bg.open { display: flex; }
+    .cp-box { background: #1c1c1e; border: 1px solid #3f3f46; border-radius: 8px; width: 560px; max-width: 90vw; box-shadow: 0 25px 70px rgba(0,0,0,.8), 0 0 0 1px rgba(168,85,247,0.15); overflow: hidden; }
+    .cp-in { width: 100%; padding: 11px 16px; background: transparent; border: none; border-bottom: 1px solid #3f3f46; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; caret-color: var(--accent); }
+    .cp-in::placeholder { color: #52525b; }
+    .cp-list { max-height: 290px; overflow-y: auto; }
+    .cp-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; cursor: pointer; font-size: 13px; color: #a1a1aa; font-family: 'Inter', sans-serif; }
+    .cp-item:hover, .cp-item.sel { background: rgba(168,85,247,0.1); color: var(--text); }
+    .cp-item.sel { border-left: 2px solid var(--accent); }
+    .cp-path { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #52525b; }
+
+    /* ══════ Mobile ══════ */
+    @media (max-width: 768px) {
+      .body, .body.ai-open { grid-template-columns: 0 0 1fr 0; }
+      .actbar, .sidebar, .ai-panel { display: none; }
+      .tb-menu { display: none; }
+      .hero-visual { grid-template-columns: 1fr; padding: 14px 14px 28px; gap: 20px; }
+      .portrait-wrap { order: -1; }
+      .portrait { width: 110px; height: 125px; }
+      .hero-name { font-size: 1.85rem; }
+      :root { --ln-w: 32px; }
+      .ln { font-size: 11px; padding-right: 8px; }
+      .exp-card { margin-left: 14px; margin-right: 14px; }
+      .proj-grid, .sk-visual, .blog-list, .ct-wrap { padding-left: 14px; padding-right: 14px; }
+      .prose { padding-left: 14px; padding-right: 14px; }
+      .ct-grid { grid-template-columns: 1fr; }
+      .tab { padding: 0 9px; font-size: 11.5px; }
+      .tab-x { display: none; }
     }
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
-      50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); }
+    @media (max-width: 900px) {
+      .body.ai-open { grid-template-columns: 46px 210px 1fr 0px; }
+      .body.ai-open .ai-panel { display: none; }
     }
-    
-    /* Animation classes */
-    .animate-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .animate-slide-left {
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .animate-slide-left.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .animate-slide-right {
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .animate-slide-right.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    .animate-scale {
-      opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .animate-scale.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-    
-    /* Staggered animations for skills */
-    .skill-card {
-      opacity: 0;
-      transform: translateY(20px) scale(0.9);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .skill-card.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    
-    /* Hero animations */
-    .hero-title { animation: fadeInDown 1.2s ease; }
-    .badge { animation: fadeInUp 1.4s ease; animation-delay: 0.2s; animation-fill-mode: both; }
-    .hero-desc { animation: fadeInUp 1.6s ease; animation-delay: 0.4s; animation-fill-mode: both; }
-    .social { animation: fadeInUp 1.8s ease; animation-delay: 0.6s; animation-fill-mode: both; }
-    .hero-buttons { animation: fadeInUp 2s ease; animation-delay: 0.8s; animation-fill-mode: both; }
-    .portrait { animation: scaleIn 1.2s ease; animation-delay: 0.5s; animation-fill-mode: both; }
   </style>
 </head>
 <body>
+<div class="window">
 
-  <!-- Navbar -->
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#blogs">Blogs</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-copy">
-      <h1 class="hero-title">Hello, I'm <strong>Shubham Maurya</strong></h1>
-      <div class="badge">⚙️ Senior Backend Engineer</div>
-      <p class="hero-desc">
-        Senior Backend Engineer with 7+ years of experience scaling high-throughput systems
-        from thousands to millions of daily requests. Expert in Node.js, TypeScript, NestJS,
-        and cloud-native infrastructure. Proven track record of optimizing performance,
-        reducing operational costs, and integrating Gen-AI to drive 95%+ efficiency gains.
-      </p>
-      <div class="social">
-        <a href="mailto:shubhammaurya2385@gmail.com" aria-label="Email"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" alt="Email"></a>
-        <a href="https://github.com/ddev687" target="_blank" rel="noreferrer" aria-label="GitHub"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
-        <a href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn"></a>
-        <a href="https://x.com/ddeveloper102" target="_blank" rel="noreferrer" aria-label="X / Twitter"><img class="social-icon" src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"></a>
-      </div>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-contact">📧 Contact Me</a>
-        <a href="SHUBHAM_MAURYA_CV.pdf" class="btn btn-portfolio" target="_blank">📄 Download Resume</a>
-      </div>
+  <!-- ════ Title Bar ════ -->
+  <div class="titlebar">
+    <div class="traffic">
+      <div class="tl tl-r"></div>
+      <div class="tl tl-y"></div>
+      <div class="tl tl-g"></div>
     </div>
-    <div class="hero-image">
-      <div class="portrait">
-        <img src="https://pbs.twimg.com/profile_images/1988834007119982594/Z-1XM4-M_400x400.jpg" alt="Shubham Maurya" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+    <!-- Cursor Logo -->
+    <div class="cursor-logo">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect width="18" height="18" rx="4" fill="url(#cg)"/>
+        <path d="M5 13L9 5l4 8H5z" fill="white" opacity=".9"/>
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="18" y2="18"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+      </svg>
+      Cursor
+    </div>
+    <div class="tb-menu">
+      <span class="tb-mi">File</span>
+      <span class="tb-mi">Edit</span>
+      <span class="tb-mi">View</span>
+      <span class="tb-mi">Selection</span>
+      <span class="tb-mi">Run</span>
+      <span class="tb-mi">Terminal</span>
+    </div>
+    <div class="tb-center">shubham-maurya — portfolio</div>
+    <div class="tb-right">
+      <div class="tb-model" onclick="toggleAI()">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        claude-sonnet-4
       </div>
+      <svg class="tb-icon" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#a1a1aa" stroke-width="1.4"><circle cx="6.5" cy="6.5" r="4"/><path d="M9.5 9.5l3 3"/></svg>
+      <svg class="tb-icon" onclick="toggleAI()" width="15" height="15" viewBox="0 0 16 16" fill="#a855f7"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 11c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm1-4H7V5h2v3z"/></svg>
     </div>
   </div>
 
-  <!-- About -->
-  <section id="about">
-    <h2 class="animate-on-scroll">About Me</h2>
-    <div class="panel animate-on-scroll">
-      <div class="animate-slide-right">
-        <p>
-          I'm a Senior Backend Engineer with 7+ years of experience scaling high-throughput systems
-          from thousands to millions of daily requests. I've worked across startups and enterprise-level
-          products, leading teams and architecting systems that power real-world business growth.
-        </p>
-        <p>
-          My expertise spans Node.js, TypeScript, NestJS, PostgreSQL, and cloud-native infrastructure
-          including Docker, Kubernetes, AWS, and GCP. I specialize in building microservices, optimizing
-          database performance, and integrating Gen-AI (OpenAI, Claude, Gemini) to drive 95%+ efficiency
-          gains in critical workflows.
-        </p>
-        <p>
-          When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects,
-          or sharing knowledge through technical blogs. I believe in continuous learning and staying updated with
-          the latest trends in backend development and AI.
-        </p>
-      </div>
-    </div>
-  </section>
+  <!-- ════ Body ════ -->
+  <div class="body" id="body">
 
-  <!-- Education -->
-  <!-- <section id="education">
-    <h2>Education</h2>
-    <div class="grid-cards">
-      <div class="panel">
-        <div class="top"><h3 style="color:#f97316;">Master of Computer Applications</h3><span class="meta">Uka Tarsadia University</span></div>
-        <p>Jun 2016 – Jun 2018</p>
+    <!-- Activity Bar -->
+    <div class="actbar">
+      <div class="ai-btn active" title="Explorer" onclick="toggleSidebar()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
       </div>
-      <div class="panel">
-        <div class="top"><h3 style="color:#f97316;">Bachelor of Computer Applications</h3><span class="meta">Veer Narmad South Gujarat University</span></div>
-        <p>Jun 2013 – Jun 2016</p>
+      <div class="ai-btn" title="Search (⌘P)" onclick="openCP()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </div>
+      <div class="ai-btn" title="Source Control">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 009 9"/></svg>
+      </div>
+      <div class="ai-btn" title="Extensions">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22M17.5 15H9"/></svg>
+      </div>
+      <div class="act-spacer"></div>
+      <!-- Cursor AI button -->
+      <div class="ai-btn" title="Cursor AI (⌘L)" onclick="toggleAI()" style="color: var(--accent);">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="ai-btn" title="Account">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="ai-btn" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       </div>
     </div>
-  </section> -->
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2 class="animate-on-scroll">Skills</h2>
-    <p class="animate-on-scroll" style="text-align:center;color:#9ca3af;max-width:70ch;margin:0 auto 1.5rem;">Here are some of the technologies that are part of my current stack:</p>
-    <div class="skills-grid">
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/javascript" alt="JavaScript"><div class="skill-name">JavaScript</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/typescript" alt="TypeScript"><div class="skill-name">TypeScript</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js"><div class="skill-name">Node.js</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://teamraft.com/wp-content/uploads/nextjs.jpg" alt="Next.js"><div class="skill-name">Next.js</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/nestjs" alt="Nest.js"><div class="skill-name">Nest.js</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/graphql" alt="GraphQL"><div class="skill-name">GraphQL</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/hasura" alt="Hasura"><div class="skill-name">Hasura</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://www.shubhammaurya.me/assets/images/skills/express.svg" alt="Express"><div class="skill-name">Express</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://miro.medium.com/1*V8vAkYA9QOi-gLKh68mtOg.jpeg" alt="Fastify"><div class="skill-name">Fastify</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/react" alt="React"><div class="skill-name">React</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/jest" alt="Jest"><div class="skill-name">Jest</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/openapiinitiative" alt="REST APIs"><div class="skill-name">REST APIs</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL"><div class="skill-name">PostgreSQL</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/mongodb" alt="MongoDB"><div class="skill-name">MongoDB</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://icon2.cleanpng.com/20180817/vog/8968d0640f2c4053333ce7334314ef83.webp" alt="DynamoDB"><div class="skill-name">DynamoDB</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/redis" alt="Redis"><div class="skill-name">Redis</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://svn.apache.org/repos/asf/kafka/site/logos/originals/png/WIDE%20-%20White%20on%20Transparent.png" alt="Kafka"><div class="skill-name">Kafka</div></div>
-      <!-- <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/rabbitmq" alt="RabbitMQ"><div class="skill-name">RabbitMQ</div></div> -->
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/firebase" alt="Firestore / Firebase"><div class="skill-name">Firestore / Firebase</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://icon2.cleanpng.com/20180817/vog/8968d0640f2c4053333ce7334314ef83.webp" alt="AWS"><div class="skill-name">AWS</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/googlecloud" alt="GCP"><div class="skill-name">GCP</div></div>
-      <!-- <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/githubactions" alt="CI/CD"><div class="skill-name">CI/CD</div></div> -->
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/docker" alt="Docker"><div class="skill-name">Docker</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/kubernetes" alt="Kubernetes"><div class="skill-name">Kubernetes</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/openai" alt="OpenAI APIs"><div class="skill-name">OpenAI APIs</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/anthropic" alt="Claude"><div class="skill-name">Claude</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/googlegemini" alt="Gemini"><div class="skill-name">Gemini</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/meta" alt="LLaMA"><div class="skill-name">LLaMA</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/cursor" alt="Cursor"><div class="skill-name">Cursor</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/githubactions" alt="CI/CD"><div class="skill-name">CI/CD</div></div>
-      <div class="skill-card"><img class="skill-icon-img" src="https://cdn.simpleicons.org/dotenv" alt="Microservices"><div class="skill-name">Microservices</div></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sb-sect">Explorer</div>
+      <div class="sb-div"></div>
+      <div class="sb-sect" style="padding-left:14px; font-size:9.5px;">SHUBHAM-MAURYA</div>
+      <div class="sb-folder"><span style="font-size:11px;">▾</span><span>📁</span>src</div>
+      <div class="sb-file active" data-tab="home"       onclick="switchTab('home')">      <span>⚛️</span>home.tsx</div>
+      <div class="sb-file"        data-tab="about"      onclick="switchTab('about')">     <span>🌐</span>about.html</div>
+      <div class="sb-file"        data-tab="experience" onclick="switchTab('experience')"><span>📘</span>experience.ts</div>
+      <div class="sb-file"        data-tab="projects"   onclick="switchTab('projects')">  <span>📜</span>projects.js</div>
+      <div class="sb-file"        data-tab="skills"     onclick="switchTab('skills')">    <span style="font-family:monospace;font-size:11px;">{}</span>skills.json</div>
+      <div class="sb-file"        data-tab="blogs"      onclick="switchTab('blogs')">     <span>📝</span>blogs.md</div>
+      <div class="sb-file"        data-tab="contact"    onclick="switchTab('contact')">   <span>🎨</span>contact.css</div>
+      <div class="sb-div" style="margin-top:8px;"></div>
+      <div class="sb-sect" style="padding-left:14px; font-size:9.5px;">PDF</div>
+      <div class="sb-file" onclick="window.open('SHUBHAM_MAURYA_CV.pdf','_blank')"><span>📄</span>Shubham_Resume.pdf</div>
     </div>
-  </section>
 
-  <!-- Experience -->
-  <section id="experience">
-    <h2 class="animate-on-scroll">Experience</h2>
-    <div class="grid-cards">
-      <div class="panel">
-        <div class="top"><h3 style="color:#f97316;"><a href="https://www.foodmarkethub.com/" target="_blank" rel="noreferrer">Food Market Hub</a></h3><span class="meta">Senior Backend Engineer · Sep 2022 – Present · Singapore / Remote</span></div>
-        <ul>
-          <li>Led Integration Team, enabling bidirectional sync with 35+ POS/accounting partners, powering 1M+ daily API requests.</li>
-          <li>Engineered an AI-powered smart onboarding system using OpenAI API — cut customer setup time from 21 days to 1 day (95% reduction).</li>
-          <li>Architected and managed high-throughput backend services handling 2M+ requests/day with sustained reliability.</li>
-          <li>Optimized PostgreSQL queries and backend logic, reducing latency by 30% and saving $500/month in infrastructure costs.</li>
-          <li>Partnered across Product, QA, and Frontend teams to ship 10+ major features, improving user onboarding and satisfaction.</li>
-      </ul>
-    </div>
-      <div class="panel">
-        <div class="top"><h3 style="color:#f97316;"><a href="https://www.geeksinvention.com/" target="_blank" rel="noreferrer">Geeks Invention</a></h3><span class="meta">Senior Full-Stack Engineer · Jul 2021 – Aug 2022 · India / Remote</span></div>
-        <ul>
-          <li>Promoted to Team Lead within one month for delivering scalable backend architecture; led a team of 8 engineers.</li>
-          <li>Designed and deployed a certificate management platform with secure API-based issuance and tracking.</li>
-          <li>Scaled EdTech platform infrastructure to process 10M+ daily messages via Kafka, improving real-time engagement and gamification.</li>
-          <li>Built Leaderboard and Level-Up modules, increasing student task completion rates by 20% across a large active user base.</li>
-      </ul>
-    </div>
-      <div class="panel">
-        <div class="top"><h3 style="color:#f97316;"><a href="https://www.lanetteam.com/" target="_blank" rel="noreferrer">La Net Team Software Solutions</a></h3><span class="meta">Software Developer · Dec 2017 – Jun 2021 · Surat, India</span></div>
-        <ul>
-          <li>Joined as one of the initial developers (50+ customers); scaled Marketing CRM to support 300K+ active customers using microservices, Docker & Kubernetes.</li>
-          <li>Delivered real-time analytics, campaign management, and multichannel integrations (Twilio, Gmail, Facebook APIs).</li>
-          <li>Built and managed APIs for a doctor appointment booking mobile app, enabling real-time scheduling.</li>
-      </ul>
+    <!-- Editor -->
+    <div class="editor-wrap">
+      <!-- Tabs -->
+      <div class="tabbar" id="tabbar">
+        <div class="tab active" data-tab="home"       onclick="switchTab('home')">      <span>⚛️</span>home.tsx       <span class="tab-x">×</span></div>
+        <div class="tab"        data-tab="about"      onclick="switchTab('about')">     <span>🌐</span>about.html     <span class="tab-x">×</span></div>
+        <div class="tab"        data-tab="experience" onclick="switchTab('experience')"><span>📘</span>experience.ts  <span class="tab-x">×</span></div>
+        <div class="tab"        data-tab="projects"   onclick="switchTab('projects')">  <span>📜</span>projects.js    <span class="tab-x">×</span></div>
+        <div class="tab"        data-tab="skills"     onclick="switchTab('skills')">    <span style="font-family:monospace;font-size:11px;">{}</span>skills.json   <span class="tab-x">×</span></div>
+        <div class="tab"        data-tab="blogs"      onclick="switchTab('blogs')">     <span>📝</span>blogs.md       <span class="tab-x">×</span></div>
+        <div class="tab"        data-tab="contact"    onclick="switchTab('contact')">   <span>🎨</span>contact.css    <span class="tab-x">×</span></div>
       </div>
-    </div>
-  </section>
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <span class="bc">src</span>
+        <span class="bc-sep">›</span>
+        <span class="bc" id="bcFile">home.tsx</span>
+      </div>
+      <!-- Content -->
+      <div class="editor" id="editor">
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2 class="animate-on-scroll">Personal Project</h2>
-    <div class="grid-cards">
-      <div class="card">
-        <div class="top"><h3>YourDateAI</h3><a class="btn-visit" href="https://yourdateai.com/" target="_blank" rel="noreferrer">Visit</a></div>
-        <div class="meta">OpenAI API | Capacitor | Node.js | Supabase</div>
-        <p>AI-powered dating assistant for Web and Mobile. Launched on Play Store with 100+ downloads in the first month.</p>
-        <div class="tags"><span class="tag">AI</span><span class="tag">Mobile</span><span class="tag">Web</span></div>
+        <!-- ════ HOME ════ -->
+        <div class="pnl active" id="pnl-home">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm">// hello world!! Welcome to my portfolio 👋</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc"><span class="kw">import</span> <span class="pu">{ </span><span class="ty">Engineer</span><span class="pu">, </span><span class="ty">Portfolio</span><span class="pu"> }</span> <span class="kw">from</span> <span class="str">'@cursor/types'</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">5</span><span class="lc"><span class="kw">const</span> <span class="va">shubham</span><span class="pu">: </span><span class="ty">Engineer</span> <span class="pu">= {</span></span></div>
+          <div class="cl"><span class="ln">6</span><span class="lc">&nbsp;&nbsp;<span class="pr">name</span><span class="pu">:</span> <span class="str">"Shubham Maurya"</span><span class="pu">,</span></span></div>
+          <div class="cl"><span class="ln">7</span><span class="lc">&nbsp;&nbsp;<span class="pr">role</span><span class="pu">:</span> <span class="str">"<span id="codeRole">Senior Backend Engineer</span>"</span><span class="pu">,</span></span></div>
+          <div class="cl"><span class="ln">8</span><span class="lc">&nbsp;&nbsp;<span class="pr">location</span><span class="pu">:</span> <span class="str">"Pune, Maharashtra, India"</span><span class="pu">,</span></span></div>
+          <div class="cl"><span class="ln">9</span><span class="lc">&nbsp;&nbsp;<span class="pr">experience</span><span class="pu">:</span> <span class="str">"7+ years"</span><span class="pu">,</span></span></div>
+          <div class="cl"><span class="ln">10</span><span class="lc">&nbsp;&nbsp;<span class="pr">stack</span><span class="pu">: [</span><span class="str">"Node.js"</span><span class="pu">,</span> <span class="str">"TypeScript"</span><span class="pu">,</span> <span class="str">"NestJS"</span><span class="pu">,</span> <span class="str">"Gen-AI"</span><span class="pu">,</span> <span class="str">"K8s"</span><span class="pu">],</span></span></div>
+          <div class="cl"><span class="ln">11</span><span class="lc">&nbsp;&nbsp;<span class="pr">available</span><span class="pu">:</span> <span class="kw">true</span><span class="pu">,</span></span></div>
+          <div class="cl"><span class="ln">12</span><span class="lc"><span class="pu">}</span></span></div>
+          <div class="cl"><span class="ln">13</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">14</span><span class="lc"><span class="kw">export default function</span> <span class="fn">Home</span><span class="pu">() {</span></span></div>
+          <div class="cl"><span class="ln">15</span><span class="lc">&nbsp;&nbsp;<span class="kw">return</span> <span class="pu">(</span></span></div>
+
+          <div class="hero-visual">
+            <div>
+              <div class="hero-name">Hello, I'm<br><span class="hero-name-grad">Shubham Maurya</span></div>
+              <div class="hero-role">// <span id="heroRole">Senior Backend Engineer</span><span class="cur"></span></div>
+              <p class="hero-desc">Senior Backend Engineer with 7+ years scaling high-throughput systems from thousands to millions of daily requests. Expert in Node.js, TypeScript, NestJS, and cloud-native infrastructure. Proven track record integrating Gen-AI to drive 95%+ efficiency gains.</p>
+              <div class="hero-stats">
+                <div><div class="stat-n">7+</div><div class="stat-l">Years</div></div>
+                <div><div class="stat-n">10+</div><div class="stat-l">Projects</div></div>
+                <div><div class="stat-n">2M+</div><div class="stat-l">Req / Day</div></div>
+                <div><div class="stat-n">∞</div><div class="stat-l">Curiosity</div></div>
+              </div>
+              <div class="hero-soc">
+                <a class="soc-a" href="mailto:shubhammaurya2385@gmail.com" aria-label="Email"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" alt="Email"></a>
+                <a class="soc-a" href="https://github.com/ddev687" target="_blank" rel="noreferrer" aria-label="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub"></a>
+                <a class="soc-a" href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank" rel="noreferrer" aria-label="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn"></a>
+                <a class="soc-a" href="https://x.com/ddeveloper102" target="_blank" rel="noreferrer" aria-label="X"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="X"></a>
+              </div>
+              <div class="hero-btns">
+                <a href="#" onclick="switchTab('contact');return false;" class="btn-a btn-fill">📧 Contact Me</a>
+                <a href="SHUBHAM_MAURYA_CV.pdf" target="_blank" class="btn-a btn-out">📄 Resume</a>
+              </div>
+            </div>
+            <div class="portrait-wrap">
+              <div class="portrait">
+                <img src="https://pbs.twimg.com/profile_images/1988834007119982594/Z-1XM4-M_400x400.jpg" alt="Shubham Maurya">
+              </div>
+              <div class="portrait-chip">// @ Food Market Hub</div>
+            </div>
+          </div>
+
+          <div class="cl"><span class="ln">16</span><span class="lc">&nbsp;&nbsp;<span class="pu">)</span></span></div>
+          <div class="cl"><span class="ln">17</span><span class="lc"><span class="pu">}</span></span></div>
+          <div class="cl"><span class="ln">18</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">19</span><span class="lc"><span class="cm">// ∞ Curiosity &nbsp;|&nbsp; ↑ Always Learning &nbsp;|&nbsp; ⌘K to ask Cursor AI</span></span></div>
+          <div class="cl"><span class="ln">20</span><span class="lc"></span></div>
+        </div>
+
+        <!-- ════ ABOUT ════ -->
+        <div class="pnl" id="pnl-about">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm">&lt;!-- about.html — Who is Shubham? --&gt;</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"><span class="ht">&lt;html</span> <span class="ha">lang</span>=<span class="hv">"en"</span><span class="ht">&gt;</span></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc"><span class="ht">&lt;body&gt;</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc">&nbsp;&nbsp;<span class="ht">&lt;section</span> <span class="ha">id</span>=<span class="hv">"about"</span><span class="ht">&gt;</span></span></div>
+          <div class="cl"><span class="ln">5</span><span class="lc"></span></div>
+          <div class="prose">
+            <h3>// Who am I?</h3>
+            <p>I'm a Senior Backend Engineer with 7+ years of experience scaling high-throughput systems from thousands to millions of daily requests. I've worked across startups and enterprise-level products, leading teams and architecting systems that power real-world business growth.</p>
+            <p>My expertise spans Node.js, TypeScript, NestJS, PostgreSQL, and cloud-native infrastructure including Docker, Kubernetes, AWS, and GCP. I specialize in building microservices, optimizing database performance, and integrating Gen-AI (OpenAI, Claude, Gemini) to drive 95%+ efficiency gains in critical workflows.</p>
+            <p>When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge through technical blogs. I believe in continuous learning and staying updated with the latest trends in backend development and AI.</p>
+            <h3>🎓 Education</h3>
+            <div style="margin-bottom:8px;">
+              <div class="edu-d">Master of Computer Applications</div>
+              <div class="edu-s">Uka Tarsadia University &nbsp;·&nbsp; Jun 2016 – Jun 2018</div>
+            </div>
+            <div>
+              <div class="edu-d">Bachelor of Computer Applications</div>
+              <div class="edu-s">Veer Narmad South Gujarat University &nbsp;·&nbsp; Jun 2013 – Jun 2016</div>
+            </div>
+          </div>
+          <div class="cl"><span class="ln">6</span><span class="lc">&nbsp;&nbsp;<span class="ht">&lt;/section&gt;</span></span></div>
+          <div class="cl"><span class="ln">7</span><span class="lc"><span class="ht">&lt;/body&gt;&lt;/html&gt;</span></span></div>
+          <div class="cl"><span class="ln">8</span><span class="lc"></span></div>
+        </div>
+
+        <!-- ════ EXPERIENCE ════ -->
+        <div class="pnl" id="pnl-experience">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm">// experience.ts — Professional Journey</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc"><span class="kw">interface</span> <span class="ty">Experience</span> <span class="pu">{ </span><span class="pr">company</span><span class="pu">: </span><span class="ty">string</span><span class="pu">; </span><span class="pr">role</span><span class="pu">: </span><span class="ty">string</span><span class="pu">; </span><span class="pr">highlights</span><span class="pu">: </span><span class="ty">string</span><span class="pu">[] }</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">5</span><span class="lc"><span class="kw">const</span> <span class="va">experience</span><span class="pu">: </span><span class="ty">Experience</span><span class="pu">[] = [</span></span></div>
+          <div class="cl"><span class="ln">6</span><span class="lc"></span></div>
+
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <a class="exp-co" href="https://www.foodmarkethub.com/" target="_blank" rel="noreferrer">Food Market Hub</a>
+                <div class="exp-role">Senior Backend Engineer</div>
+                <div class="exp-per">Sep 2022 – Present &nbsp;·&nbsp; Singapore / Remote</div>
+              </div>
+              <span class="exp-badge">● current</span>
+            </div>
+            <div class="exp-div"></div>
+            <ul class="exp-ul">
+              <li>Led Integration Team, enabling bidirectional sync with 35+ POS/accounting partners, powering 1M+ daily API requests.</li>
+              <li>Engineered AI-powered smart onboarding via OpenAI API — cut customer setup time from 21 days to 1 day (95% reduction).</li>
+              <li>Architected high-throughput backend services handling 2M+ requests/day with sustained reliability.</li>
+              <li>Optimized PostgreSQL queries reducing latency by 30% and saving $500/month in infrastructure costs.</li>
+              <li>Partnered across Product, QA, and Frontend teams to ship 10+ major features.</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <a class="exp-co" href="https://www.geeksinvention.com/" target="_blank" rel="noreferrer">Geeks Invention</a>
+            <div class="exp-role">Senior Full-Stack Engineer</div>
+            <div class="exp-per">Jul 2021 – Aug 2022 &nbsp;·&nbsp; India / Remote</div>
+            <div class="exp-div"></div>
+            <ul class="exp-ul">
+              <li>Promoted to Team Lead within one month; led a team of 8 engineers building scalable backend architecture.</li>
+              <li>Designed and deployed a certificate management platform with secure API-based issuance and tracking.</li>
+              <li>Scaled EdTech platform to process 10M+ daily messages via Kafka, improving real-time engagement.</li>
+              <li>Built Leaderboard and Level-Up modules, increasing student task completion rates by 20%.</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <a class="exp-co" href="https://www.lanetteam.com/" target="_blank" rel="noreferrer">La Net Team Software Solutions</a>
+            <div class="exp-role">Software Developer</div>
+            <div class="exp-per">Dec 2017 – Jun 2021 &nbsp;·&nbsp; Surat, India</div>
+            <div class="exp-div"></div>
+            <ul class="exp-ul">
+              <li>Joined as one of the initial developers (50+ customers); scaled Marketing CRM to 300K+ active customers using microservices, Docker & Kubernetes.</li>
+              <li>Delivered real-time analytics, campaign management, and multichannel integrations (Twilio, Gmail, Facebook APIs).</li>
+              <li>Built and managed APIs for a doctor appointment booking mobile app enabling real-time scheduling.</li>
+            </ul>
+          </div>
+
+          <div class="cl"><span class="ln">7</span><span class="lc"><span class="pu">]</span></span></div>
+          <div class="cl"><span class="ln">8</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">9</span><span class="lc"><span class="kw">export</span> <span class="pu">{</span> <span class="va">experience</span> <span class="pu">}</span></span></div>
+          <div class="cl"><span class="ln">10</span><span class="lc"></span></div>
+        </div>
+
+        <!-- ════ PROJECTS ════ -->
+        <div class="pnl" id="pnl-projects">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm">// projects.js — Things I've Built</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc"><span class="kw">const</span> <span class="va">projects</span> <span class="pu">= [</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc"></span></div>
+
+          <div class="proj-grid">
+            <div class="proj-card">
+              <div class="proj-n">Food Market Hub</div>
+              <div class="proj-co">// Procurement &amp; Inventory Management · Singapore</div>
+              <div class="proj-st">Node.js · Hasura · PostgreSQL · AWS · OpenAI</div>
+              <p class="proj-desc">Led Integration Team enabling bidirectional sync with 35+ POS/accounting partners, powering 1M+ daily API requests. Built AI-powered onboarding that cut setup time from 21 days to 1 day (95% reduction) for 4,000+ restaurants across Southeast Asia.</p>
+              <div class="proj-tags"><span class="proj-tag">Microservices</span><span class="proj-tag">AI Onboarding</span><span class="proj-tag">Integrations</span><span class="proj-tag">Scale</span></div>
+              <a class="proj-link" href="https://foodmarkethub.com/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+            <div class="proj-card">
+              <div class="proj-n">GoHighLevel — Marketing CRM</div>
+              <div class="proj-co">// All-in-One Agency &amp; Marketing Platform</div>
+              <div class="proj-st">Node.js · React.js · Docker · Kubernetes · GCP · Firebase · Twilio</div>
+              <p class="proj-desc">Contributed to scaling the CRM backend powering 1M+ businesses worldwide. Delivered real-time analytics, multichannel campaign management (SMS, email, voice), and automation workflows across the full business lifecycle.</p>
+              <div class="proj-tags"><span class="proj-tag">CRM</span><span class="proj-tag">Automation</span><span class="proj-tag">Microservices</span><span class="proj-tag">Scaling</span></div>
+              <a class="proj-link" href="https://www.gohighlevel.com/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+            <div class="proj-card">
+              <div class="proj-n">BYJU'S — EdTech Platform</div>
+              <div class="proj-co">// India's Largest Ed-Tech Company</div>
+              <div class="proj-st">Node.js · Kafka · Redis · PostgreSQL · WebSockets</div>
+              <p class="proj-desc">Scaled real-time EdTech infrastructure to process 10M+ daily messages via Kafka. Built Leaderboard and Level-Up gamification modules, increasing student task completion rates by 20%.</p>
+              <div class="proj-tags"><span class="proj-tag">Kafka</span><span class="proj-tag">Real-time</span><span class="proj-tag">Gamification</span><span class="proj-tag">EdTech</span></div>
+              <a class="proj-link" href="https://byjus.com/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+            <div class="proj-card">
+              <div class="proj-n">JumiaPay — Payment App</div>
+              <div class="proj-co">// Africa's Largest E-Commerce Payment Platform</div>
+              <div class="proj-st">NestJS · PostgreSQL</div>
+              <p class="proj-desc">Built and managed secure payment APIs for JumiaPay, processing high-volume transactions across Africa.</p>
+              <div class="proj-tags"><span class="proj-tag">Payments</span><span class="proj-tag">Fintech</span><span class="proj-tag">Security</span><span class="proj-tag">APIs</span></div>
+              <a class="proj-link" href="https://pay.jumia.com.ng/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+            <div class="proj-card">
+              <div class="proj-n">Spaces — AI BDR for RIAs</div>
+              <div class="proj-co">// Autonomous AI Business Development · FinTech</div>
+              <div class="proj-st">Node.js · AI Agents · React.js · PostgreSQL · AWS</div>
+              <p class="proj-desc">Built the backend for an autonomous AI sales agent that sends personalized outreach, handles objections, and books calendar appointments — delivering qualified meetings for financial advisory firms.</p>
+              <div class="proj-tags"><span class="proj-tag">AI Agents</span><span class="proj-tag">FinTech</span><span class="proj-tag">Automation</span><span class="proj-tag">LLM</span></div>
+              <a class="proj-link" href="https://spacesos.com/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+            <div class="proj-card">
+              <div class="proj-n">GetLeadIntent</div>
+              <div class="proj-co">// AI-Powered Lead Intelligence Platform</div>
+              <div class="proj-st">Node.js · PostgreSQL · AI Agents</div>
+              <p class="proj-desc">Engineered the core backend for an AI-driven lead intent detection platform. Built real-time data pipelines to score, qualify, and route inbound leads using behavioral signals and LLM-powered intent analysis.</p>
+              <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Lead Gen</span><span class="proj-tag">Real-time</span><span class="proj-tag">LLM</span></div>
+              <a class="proj-link" href="https://getleadintent.com/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+            <div class="proj-card">
+              <div class="proj-n">YourDateAI</div>
+              <div class="proj-co">// Personal Project · AI Dating Assistant</div>
+              <div class="proj-st">OpenAI API · Capacitor · Node.js · Supabase</div>
+              <p class="proj-desc">AI-powered personal dating assistant deployed to the Play Store and live at yourdateai.com. Launched with 100+ downloads in the first month. Built with OpenAI API, Capacitor (iOS/Android), Node.js, and Supabase.</p>
+              <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Mobile</span><span class="proj-tag">Web</span><span class="proj-tag">Personal</span></div>
+              <a class="proj-link" href="https://yourdateai.com/" target="_blank" rel="noreferrer">↗ Visit Site</a>
+            </div>
+          </div>
+
+          <div class="cl"><span class="ln">5</span><span class="lc"><span class="pu">]</span></span></div>
+          <div class="cl"><span class="ln">6</span><span class="lc"><span class="kw">module</span><span class="pu">.</span><span class="va">exports</span> <span class="pu">= {</span> <span class="va">projects</span> <span class="pu">}</span></span></div>
+          <div class="cl"><span class="ln">7</span><span class="lc"></span></div>
+        </div>
+
+        <!-- ════ SKILLS ════ -->
+        <div class="pnl" id="pnl-skills">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm">// skills.json — Tech Stack</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"><span class="pu">{</span></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc">&nbsp;&nbsp;<span class="pr">"languages"</span><span class="pu">: [</span><span class="str">"JavaScript"</span><span class="pu">,</span> <span class="str">"TypeScript"</span><span class="pu">],</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc">&nbsp;&nbsp;<span class="pr">"backend"</span><span class="pu">: [</span><span class="str">"Node.js"</span><span class="pu">,</span> <span class="str">"NestJS"</span><span class="pu">,</span> <span class="str">"Express"</span><span class="pu">,</span> <span class="str">"Fastify"</span><span class="pu">],</span></span></div>
+          <div class="cl"><span class="ln">5</span><span class="lc">&nbsp;&nbsp;<span class="pr">"ai_ml"</span><span class="pu">: [</span><span class="str">"OpenAI"</span><span class="pu">,</span> <span class="str">"Claude"</span><span class="pu">,</span> <span class="str">"Gemini"</span><span class="pu">,</span> <span class="str">"LLaMA"</span><span class="pu">],</span></span></div>
+          <div class="cl"><span class="ln">6</span><span class="lc">&nbsp;&nbsp;<span class="pr">"cloud"</span><span class="pu">: [</span><span class="str">"AWS"</span><span class="pu">,</span> <span class="str">"GCP"</span><span class="pu">,</span> <span class="str">"Docker"</span><span class="pu">,</span> <span class="str">"Kubernetes"</span><span class="pu">]</span></span></div>
+          <div class="cl"><span class="ln">7</span><span class="lc"><span class="pu">}</span></span></div>
+          <div class="cl"><span class="ln">8</span><span class="lc"></span></div>
+
+          <div class="sk-visual">
+            <div class="sk-cat">
+              <div class="sk-cat-lbl">// Languages</div>
+              <div class="sk-grid">
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/javascript" alt="JS"><div class="sk-item-n">JavaScript</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/typescript" alt="TS"><div class="sk-item-n">TypeScript</div></div>
+              </div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-lbl">// Backend & API</div>
+              <div class="sk-grid">
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js"><div class="sk-item-n">Node.js</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/nestjs" alt="NestJS"><div class="sk-item-n">NestJS</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/express/ffffff" alt="Express"><div class="sk-item-n">Express</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/fastify/ffffff" alt="Fastify"><div class="sk-item-n">Fastify</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/graphql" alt="GraphQL"><div class="sk-item-n">GraphQL</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/hasura" alt="Hasura"><div class="sk-item-n">Hasura</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/jest" alt="Jest"><div class="sk-item-n">Jest</div></div>
+              </div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-lbl">// Frontend</div>
+              <div class="sk-grid">
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/react" alt="React"><div class="sk-item-n">React</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="Next.js"><div class="sk-item-n">Next.js</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/react" alt="RN"><div class="sk-item-n">React Native</div></div>
+              </div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-lbl">// Databases & Messaging</div>
+              <div class="sk-grid">
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/postgresql" alt="PG"><div class="sk-item-n">PostgreSQL</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/mongodb" alt="Mongo"><div class="sk-item-n">MongoDB</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/redis" alt="Redis"><div class="sk-item-n">Redis</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/firebase" alt="Firebase"><div class="sk-item-n">Firebase</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/apachekafka/ffffff" alt="Kafka"><div class="sk-item-n">Kafka</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/amazondynamodb/ffffff" alt="DynamoDB"><div class="sk-item-n">DynamoDB</div></div>
+              </div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-lbl">// AI / LLM</div>
+              <div class="sk-grid">
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/openai/ffffff" alt="OpenAI"><div class="sk-item-n">OpenAI</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/anthropic/ffffff" alt="Claude"><div class="sk-item-n">Claude</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/googlegemini" alt="Gemini"><div class="sk-item-n">Gemini</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/meta" alt="LLaMA"><div class="sk-item-n">LLaMA</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/cursor/a855f7" alt="Cursor"><div class="sk-item-n">Cursor AI</div></div>
+              </div>
+            </div>
+            <div class="sk-cat">
+              <div class="sk-cat-lbl">// Cloud & Infrastructure</div>
+              <div class="sk-grid">
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/amazonaws/ffffff" alt="AWS"><div class="sk-item-n">AWS</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/googlecloud" alt="GCP"><div class="sk-item-n">GCP</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/docker" alt="Docker"><div class="sk-item-n">Docker</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/kubernetes" alt="K8s"><div class="sk-item-n">Kubernetes</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/amazonsqs/ffffff" alt="SQS"><div class="sk-item-n">SQS / SNS</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/awslambda/ffffff" alt="Lambda"><div class="sk-item-n">Lambda</div></div>
+                <div class="sk-item"><img src="https://cdn.simpleicons.org/githubactions" alt="CI/CD"><div class="sk-item-n">CI / CD</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cl"><span class="ln">9</span><span class="lc"><span class="cm">// ↑ Always Learning</span></span></div>
+          <div class="cl"><span class="ln">10</span><span class="lc"></span></div>
+        </div>
+
+        <!-- ════ BLOGS ════ -->
+        <div class="pnl" id="pnl-blogs">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm"># blogs.md — Writing on Medium &amp; GitConnected</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc"><span class="kw">## Articles</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc"></span></div>
+
+          <div class="blog-list">
+            <a class="blog-item" href="https://medium.com/@shubhammaurya2385/caching-redis-why-we-built-our-own-database-cache-2c302e6de599" target="_blank" rel="noreferrer">
+              <div class="blog-t">Caching ≠ Redis</div>
+              <div class="blog-m">Architecture | Performance</div>
+              <p class="blog-d">Why we built a tailored database cache instead of using Redis.</p>
+              <div class="blog-tags"><span class="blog-tag">Caching</span><span class="blog-tag">Hasura</span><span class="blog-tag">PostgreSQL</span></div>
+            </a>
+            <a class="blog-item" href="https://medium.com/@shubhammaurya2385/when-caching-bites-back-fixing-postgres-slowness-caused-by-auto-vacuum-f195946ef761" target="_blank" rel="noreferrer">
+              <div class="blog-t">When Caching Bites Back</div>
+              <div class="blog-m">PostgreSQL | Performance | Auto Vacuum</div>
+              <p class="blog-d">Fixing Postgres slowness caused by auto vacuum and misbehaving caches.</p>
+              <div class="blog-tags"><span class="blog-tag">PostgreSQL</span><span class="blog-tag">Performance</span><span class="blog-tag">Caching</span></div>
+            </a>
+            <a class="blog-item" href="https://medium.com/@shubhammaurya2385/how-to-scale-socket-io-for-high-performance-real-time-systems-7da745f69202" target="_blank" rel="noreferrer">
+              <div class="blog-t">How to Scale Socket.IO for High-Performance Real-Time Systems</div>
+              <div class="blog-m">Real-time | Scaling | Architecture</div>
+              <p class="blog-d">Patterns and infrastructure to scale Socket.IO for low-latency realtime apps.</p>
+              <div class="blog-tags"><span class="blog-tag">Socket.IO</span><span class="blog-tag">Real-time</span><span class="blog-tag">Scaling</span></div>
+            </a>
+            <a class="blog-item" href="https://medium.com/gitconnected/postgresql-18s-secret-weapon-how-async-i-o-made-our-queries-12-faster-5edaf3d39386" target="_blank" rel="noreferrer">
+              <div class="blog-t">PostgreSQL 18's Secret Weapon</div>
+              <div class="blog-m">PostgreSQL | Performance | Async I/O</div>
+              <p class="blog-d">How async I/O made queries up to 12× faster and boosted throughput.</p>
+              <div class="blog-tags"><span class="blog-tag">PostgreSQL</span><span class="blog-tag">Performance</span><span class="blog-tag">Async I/O</span></div>
+            </a>
+            <a class="blog-item" href="https://medium.com/gitconnected/when-your-code-is-perfect-but-the-internet-breaks-1d101b928b8c" target="_blank" rel="noreferrer">
+              <div class="blog-t">When Your Code Is Perfect, but the Internet Breaks</div>
+              <div class="blog-m">Networking | DNS | Incident</div>
+              <p class="blog-d">A real-world outage story where application logic was fine, but internet-level issues caused production failures.</p>
+              <div class="blog-tags"><span class="blog-tag">Networking</span><span class="blog-tag">DNS</span><span class="blog-tag">Postmortem</span></div>
+            </a>
+            <a class="blog-item" href="https://medium.com/gitconnected/how-our-ec2-instance-blew-65-gb-of-traffic-with-zero-cpu-usage-80b6ba6719d2" target="_blank" rel="noreferrer">
+              <div class="blog-t">How Our EC2 Instance Blew 65 GB of Traffic with Zero CPU Usage</div>
+              <div class="blog-m">AWS | EC2 | Cost Optimization</div>
+              <p class="blog-d">How unexpected network traffic silently increased AWS bills even while compute usage stayed near zero.</p>
+              <div class="blog-tags"><span class="blog-tag">AWS</span><span class="blog-tag">EC2</span><span class="blog-tag">Cloud Cost</span></div>
+            </a>
+          </div>
+
+          <div class="cl"><span class="ln">5</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">6</span><span class="lc"><span class="cm">// → medium.com/@shubhammaurya2385</span></span></div>
+          <div class="cl"><span class="ln">7</span><span class="lc"></span></div>
+        </div>
+
+        <!-- ════ CONTACT ════ -->
+        <div class="pnl" id="pnl-contact">
+          <div class="cl"><span class="ln">1</span><span class="lc"><span class="cm">/* contact.css — Let's Connect */</span></span></div>
+          <div class="cl"><span class="ln">2</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">3</span><span class="lc"><span class="fn">.developer</span> <span class="pu">{</span></span></div>
+          <div class="cl"><span class="ln">4</span><span class="lc">&nbsp;&nbsp;<span class="pr">name</span><span class="pu">:</span> <span class="str">Shubham Maurya</span><span class="pu">;</span></span></div>
+          <div class="cl"><span class="ln">5</span><span class="lc">&nbsp;&nbsp;<span class="pr">status</span><span class="pu">:</span> <span class="str">open-to-opportunities</span><span class="pu">;</span></span></div>
+          <div class="cl"><span class="ln">6</span><span class="lc">&nbsp;&nbsp;<span class="pr">location</span><span class="pu">:</span> <span class="str">Pune, Maharashtra, India</span><span class="pu">;</span></span></div>
+          <div class="cl"><span class="ln">7</span><span class="lc">&nbsp;&nbsp;<span class="pr">response-time</span><span class="pu">:</span> <span class="num">24h</span><span class="pu">;</span></span></div>
+          <div class="cl"><span class="ln">8</span><span class="lc"><span class="pu">}</span></span></div>
+          <div class="cl"><span class="ln">9</span><span class="lc"></span></div>
+
+          <div class="ct-wrap">
+            <div class="ct-card">
+              <div class="ct-title">Let's work together</div>
+              <div class="ct-sub">// Reach out for backend opportunities, collaborations, or just a chat</div>
+              <div class="ct-grid">
+                <div><div class="ct-lbl">Email</div><div class="ct-val"><a href="mailto:shubhammaurya2385@gmail.com">shubhammaurya2385@gmail.com</a></div></div>
+                <div><div class="ct-lbl">Phone</div><div class="ct-val"><a href="tel:+917621069675">+91 7621069675</a></div></div>
+                <div><div class="ct-lbl">Location</div><div class="ct-val">📍 Pune, Maharashtra, India</div></div>
+                <div><div class="ct-lbl">Availability</div><div class="ct-val" style="color:var(--c-num);">🟢 Open to Opportunities</div></div>
+              </div>
+              <div class="ct-links">
+                <a class="ct-link" href="https://github.com/ddev687" target="_blank" rel="noreferrer"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="">GitHub</a>
+                <a class="ct-link" href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank" rel="noreferrer"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="">LinkedIn</a>
+                <a class="ct-link" href="https://x.com/ddeveloper102" target="_blank" rel="noreferrer"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" alt="">X / Twitter</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="cl"><span class="ln">10</span><span class="lc"></span></div>
+          <div class="cl"><span class="ln">11</span><span class="lc"><span class="fn">footer</span> <span class="pu">{</span> <span class="pr">content</span><span class="pu">:</span> <span class="str">"© 2026 Shubham Maurya"</span><span class="pu">; }</span></span></div>
+          <div class="cl"><span class="ln">12</span><span class="lc"></span></div>
+        </div>
+
+      </div><!-- /editor -->
+    </div><!-- /editor-wrap -->
+
+    <!-- ════ AI Composer Panel ════ -->
+    <div class="ai-panel" id="aiPanel">
+      <div class="ai-panel-header">
+        <div class="ai-tabs">
+          <div class="ai-tab active">Composer</div>
+          <div class="ai-tab">Chat</div>
+          <div class="ai-tab">Notepads</div>
+        </div>
+        <div class="ai-close" onclick="toggleAI()">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#71717a" stroke-width="1.5"><path d="M12 4L4 12M4 4l8 8"/></svg>
+        </div>
+      </div>
+      <div class="ai-messages" id="aiMessages">
+        <!-- msg 1 -->
+        <div class="msg">
+          <div class="msg-user"><span style="color:var(--accent);">@Codebase</span> who is shubham?</div>
+        </div>
+        <div class="msg">
+          <div class="msg-ai-label">
+            <svg width="12" height="12" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="url(#cg2)"/><path d="M5 13L9 5l4 8H5z" fill="white" opacity=".9"/><defs><linearGradient id="cg2" x1="0" y1="0" x2="18" y2="18"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs></svg>
+            cursor-sonnet-4
+          </div>
+          <div class="msg-ai-bubble">
+            <strong>Shubham Maurya</strong> is a Senior Backend Engineer with <code>7+ years</code> scaling distributed systems.<br><br>
+            <ul class="msg-ai-list">
+              <li>Handles <code>2M+ req/day</code> @ Food Market Hub</li>
+              <li>Cut onboarding time 95% via OpenAI API</li>
+              <li>Expert in <code>Node.js</code>, <code>NestJS</code>, <code>K8s</code></li>
+              <li>Built <code>10M+</code> msg/day Kafka pipelines</li>
+            </ul>
+          </div>
+        </div>
+        <!-- msg 2 -->
+        <div class="msg" style="margin-top:4px;">
+          <div class="msg-user">What's his best project?</div>
+        </div>
+        <div class="msg">
+          <div class="msg-ai-label">
+            <svg width="12" height="12" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="url(#cg3)"/><path d="M5 13L9 5l4 8H5z" fill="white" opacity=".9"/><defs><linearGradient id="cg3" x1="0" y1="0" x2="18" y2="18"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs></svg>
+            cursor-sonnet-4
+          </div>
+          <div class="msg-ai-bubble">
+            He's shipped across <strong>7 live products</strong>: <code>Food Market Hub</code>, <code>GoHighLevel</code>, <code>BYJU'S</code>, <code>JumiaPay</code>, <code>Spaces AI</code>, <code>GetLeadIntent</code>, and <code>YourDateAI</code> — from fintech and edtech to AI agents 🚀
+          </div>
+        </div>
+        <!-- suggestions -->
+        <div class="ai-suggest">
+          <button class="ai-suggest-btn" onclick="aiSuggestClick('skills')">⚡ What's his tech stack?</button>
+          <button class="ai-suggest-btn" onclick="aiSuggestClick('experience')">💼 Show work experience</button>
+          <button class="ai-suggest-btn" onclick="aiSuggestClick('blogs')">✍️ Any technical writing?</button>
+          <button class="ai-suggest-btn" onclick="aiSuggestClick('contact')">📧 How to contact him?</button>
+        </div>
+      </div>
+      <div class="ai-input-wrap">
+        <div class="ai-input-box">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#52525b" stroke-width="1.4"><circle cx="11" cy="11" r="4"/><path d="M15 15l-2.5-2.5"/></svg>
+          <input class="ai-input" id="aiInput" placeholder="Ask about Shubham... @Codebase" onkeydown="aiInputKey(event)">
+          <div class="ai-send" onclick="aiSend()">↑</div>
+        </div>
+        <div class="ai-hint"><span class="kbd">⌘K</span> inline edit &nbsp;·&nbsp; <span class="kbd">⌘L</span> chat &nbsp;·&nbsp; <span class="kbd">⌘I</span> composer</div>
       </div>
     </div>
-  </section>
 
-  <!-- Blogs -->
-  <section id="blogs">
-    <h2 class="animate-on-scroll">Blogs</h2>
-    <div class="grid-cards blogs-row">
-      <div class="card">
-        <div class="top"><h3>Caching ≠ Redis</h3><a class="btn-visit" href="https://medium.com/@shubhammaurya2385/caching-redis-why-we-built-our-own-database-cache-2c302e6de599" target="_blank">Read</a></div>
-        <div class="meta">Architecture | Performance</div>
-        <p>Why we built a tailored database cache instead of using Redis.</p>
-        <div class="tags"><span class="tag">Caching</span><span class="tag">Hasura</span><span class="tag">PostgreSQL</span></div>
-      </div>
-      <div class="card">
-        <div class="top"><h3>When Caching Bites Back</h3><a class="btn-visit" href="https://medium.com/@shubhammaurya2385/when-caching-bites-back-fixing-postgres-slowness-caused-by-auto-vacuum-f195946ef761" target="_blank" rel="noreferrer">Read</a></div>
-        <div class="meta">PostgreSQL | Performance | Auto Vacuum</div>
-        <p>Fixing Postgres slowness caused by auto vacuum and misbehaving caches.</p>
-        <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Performance</span><span class="tag">Caching</span></div>
-      </div>
-      <div class="card">
-        <div class="top"><h3>How to Scale Socket.IO for High-Performance Real-Time Systems</h3><a class="btn-visit" href="https://medium.com/@shubhammaurya2385/how-to-scale-socket-io-for-high-performance-real-time-systems-7da745f69202" target="_blank" rel="noreferrer">Read</a></div>
-        <div class="meta">Real-time | Scaling | Architecture</div>
-        <p>Patterns and infrastructure to scale Socket.IO for low-latency realtime apps.</p>
-        <div class="tags"><span class="tag">Socket.IO</span><span class="tag">Real-time</span><span class="tag">Scaling</span></div>
-      </div>
-      <div class="card">
-        <div class="top"><h3>PostgreSQL 18’s Secret Weapon</h3><a class="btn-visit" href="https://medium.com/gitconnected/postgresql-18s-secret-weapon-how-async-i-o-made-our-queries-12-faster-5edaf3d39386" target="_blank" rel="noreferrer">Read</a></div>
-        <div class="meta">PostgreSQL | Performance | Async I/O</div>
-        <p>How async I/O made queries up to 12× faster and boosted throughput.</p>
-        <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Performance</span><span class="tag">Async I/O</span></div>
-      </div>
-      <div class="card">
-        <div class="top"><h3>When Your Code Is Perfect, but the Internet Breaks</h3><a class="btn-visit" href="https://medium.com/gitconnected/when-your-code-is-perfect-but-the-internet-breaks-1d101b928b8c" target="_blank" rel="noreferrer">Read</a></div>
-        <div class="meta">Networking | DNS | Incident</div>
-        <p>A real-world outage story where application logic was fine, but internet-level issues caused production failures.</p>
-        <div class="tags"><span class="tag">Networking</span><span class="tag">DNS</span><span class="tag">Postmortem</span></div>
-      </div>
-      <div class="card">
-        <div class="top"><h3>How Our EC2 Instance Blew 65 GB of Traffic with Zero CPU Usage</h3><a class="btn-visit" href="https://medium.com/gitconnected/how-our-ec2-instance-blew-65-gb-of-traffic-with-zero-cpu-usage-80b6ba6719d2" target="_blank" rel="noreferrer">Read</a></div>
-        <div class="meta">AWS | EC2 | Cost Optimization</div>
-        <p>How unexpected network traffic silently increased AWS bills even while compute usage stayed near zero.</p>
-        <div class="tags"><span class="tag">AWS</span><span class="tag">EC2</span><span class="tag">Cloud Cost</span></div>
-      </div>
+  </div><!-- /body -->
+
+  <!-- ════ Status Bar ════ -->
+  <div class="statusbar">
+    <div class="sb-l">
+      <span class="sb-i"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="0"/></svg>⎇&nbsp;main</span>
+      <span class="sb-i">⚠ 0 &nbsp; ⊗ 0</span>
     </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <h2 class="animate-on-scroll">Contact</h2>
-    <div class="panel animate-on-scroll" style="text-align:center;">
-    <p>📍 Pune, Maharashtra, India</p>
-    <p>Email: <a href="mailto:shubhammaurya2385@gmail.com">shubhammaurya2385@gmail.com</a></p>
-    <p>Phone: +91 7621069675</p>
-      <div class="social-links">
-        <a href="https://github.com/ddev687" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://linkedin.com/in/shubham-maurya-38012b112" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://x.com/ddeveloper102" target="_blank" rel="noreferrer">X / Twitter</a>
-      </div>
+    <div class="sb-r">
+      <span class="sb-i sb-accent sb-ai-badge" onclick="toggleAI()">✦ cursor-sonnet-4</span>
+      <span class="sb-i" id="sbLang">TypeScript React</span>
+      <span class="sb-i">UTF-8</span>
+      <span class="sb-i">Tab: 2</span>
+      <span class="sb-i" id="sbTime"></span>
+      <span class="sb-i">💜 Cursor Dark</span>
     </div>
-  </section>
+  </div>
 
-  <footer>
-    <p>© 2026 Shubham Maurya</p>
-  </footer>
+</div><!-- /window -->
 
-  <script>
-    // Enhanced scroll animations
-    const animateElements = document.querySelectorAll('.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale');
-    const skillCards = document.querySelectorAll('.skill-card');
-    const cards = document.querySelectorAll('.card');
-    
-    // Intersection Observer for scroll animations
-    const animationObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { 
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    // Observe all animated elements
-    animateElements.forEach(el => animationObserver.observe(el));
-    // Observe cards too so they reveal when horizontally scrolled into view
-    cards.forEach(el => animationObserver.observe(el));
-    
-    // Staggered animation for skill cards
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const cards = entry.target.querySelectorAll('.skill-card');
-          cards.forEach((card, index) => {
-            setTimeout(() => {
-              card.classList.add('visible');
-            }, index * 100); // 100ms delay between each card
-          });
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    const skillsSection = document.getElementById('skills');
-    if (skillsSection) {
-      skillObserver.observe(skillsSection);
-    }
-    
-    // Original card reveal animation
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.85;
-      cards.forEach(card => {
-        const boxTop = card.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) {
-          card.classList.add('visible');
-        }
-      });
+<!-- ════ Command Palette ════ -->
+<div class="cp-bg" id="cpBg" onclick="onCpBgClick(event)">
+  <div class="cp-box">
+    <input class="cp-in" id="cpIn" placeholder="🔍  shubham-maurya : portfolio" autocomplete="off" oninput="filterCp(this.value)">
+    <div class="cp-list" id="cpList">
+      <div class="cp-item sel" data-tab="home">      <span>⚛️</span> home.tsx       <span class="cp-path">src/</span></div>
+      <div class="cp-item"     data-tab="about">     <span>🌐</span> about.html     <span class="cp-path">src/</span></div>
+      <div class="cp-item"     data-tab="experience"><span>📘</span> experience.ts  <span class="cp-path">src/</span></div>
+      <div class="cp-item"     data-tab="projects">  <span>📜</span> projects.js    <span class="cp-path">src/</span></div>
+      <div class="cp-item"     data-tab="skills">    <span style="font-family:monospace;">{}</span> skills.json   <span class="cp-path">src/</span></div>
+      <div class="cp-item"     data-tab="blogs">     <span>📝</span> blogs.md       <span class="cp-path">src/</span></div>
+      <div class="cp-item"     data-tab="contact">   <span>🎨</span> contact.css    <span class="cp-path">src/</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Tab switching ── */
+  const META = {
+    home:       { file: 'home.tsx',      lang: 'TypeScript React' },
+    about:      { file: 'about.html',    lang: 'HTML' },
+    experience: { file: 'experience.ts', lang: 'TypeScript' },
+    projects:   { file: 'projects.js',   lang: 'JavaScript' },
+    skills:     { file: 'skills.json',   lang: 'JSON' },
+    blogs:      { file: 'blogs.md',      lang: 'Markdown' },
+    contact:    { file: 'contact.css',   lang: 'CSS' },
+  };
+  function switchTab(n) {
+    document.querySelectorAll('.tab').forEach(e => e.classList.toggle('active', e.dataset.tab === n));
+    document.querySelectorAll('.sb-file').forEach(e => e.classList.toggle('active', e.dataset.tab === n));
+    document.querySelectorAll('.pnl').forEach(e => e.classList.toggle('active', e.id === `pnl-${n}`));
+    const m = META[n];
+    if (m) { document.getElementById('bcFile').textContent = m.file; document.getElementById('sbLang').textContent = m.lang; }
+    document.getElementById('editor').scrollTop = 0;
+  }
+
+  /* ── AI Panel ── */
+  let aiOpen = false;
+  function toggleAI() {
+    aiOpen = !aiOpen;
+    document.getElementById('body').classList.toggle('ai-open', aiOpen);
+  }
+  function aiSuggestClick(tab) {
+    switchTab(tab);
+    // also add a message to ai chat
+    const responses = {
+      skills:     'Showing <strong>skills.json</strong> — Shubham\'s full tech stack including AI/LLM tools, cloud infra, and backend frameworks.',
+      experience: 'Showing <strong>experience.ts</strong> — 7+ years across Food Market Hub, Geeks Invention, and La Net Team.',
+      blogs:      'Showing <strong>blogs.md</strong> — 6 published articles on PostgreSQL, Kafka, Socket.IO, and cloud architecture.',
+      contact:    'Showing <strong>contact.css</strong> — Best way is email: <code>shubhammaurya2385@gmail.com</code> or LinkedIn.',
     };
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
+    appendAiMsg(responses[tab]);
+  }
+  function appendAiMsg(html) {
+    const msgs = document.getElementById('aiMessages');
+    const div = document.createElement('div');
+    div.className = 'msg';
+    div.innerHTML = `
+      <div class="msg-ai-label">
+        <svg width="12" height="12" viewBox="0 0 18 18" fill="none"><rect width="18" height="18" rx="4" fill="url(#cgx)"/><path d="M5 13L9 5l4 8H5z" fill="white" opacity=".9"/><defs><linearGradient id="cgx" x1="0" y1="0" x2="18" y2="18"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs></svg>
+        cursor-sonnet-4
+      </div>
+      <div class="msg-ai-bubble">${html}</div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function appendUserMsg(text) {
+    const msgs = document.getElementById('aiMessages');
+    const div = document.createElement('div');
+    div.className = 'msg';
+    div.innerHTML = `<div class="msg-user">${text}</div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function aiSend() {
+    const inp = document.getElementById('aiInput');
+    const val = inp.value.trim();
+    if (!val) return;
+    appendUserMsg(val);
+    inp.value = '';
+    setTimeout(() => {
+      const v = val.toLowerCase();
+      let reply = 'I can tell you about Shubham\'s <strong>experience</strong>, <strong>projects</strong>, <strong>skills</strong>, <strong>blogs</strong>, or <strong>contact</strong> info. Try one of the suggestions above!';
+      if (v.includes('exper') || v.includes('work') || v.includes('job'))
+        reply = 'Shubham has worked at <strong>Food Market Hub</strong> (current), <strong>Geeks Invention</strong>, and <strong>La Net Team</strong>. Click the experience.ts tab to see details.';
+      else if (v.includes('skill') || v.includes('stack') || v.includes('tech'))
+        reply = 'His stack covers <code>Node.js</code>, <code>TypeScript</code>, <code>NestJS</code>, <code>PostgreSQL</code>, <code>Kafka</code>, <code>K8s</code>, and AI/LLM tools like <code>OpenAI</code>, <code>Claude</code>, <code>Gemini</code>.';
+      else if (v.includes('project') || v.includes('built') || v.includes('portfolio'))
+        reply = 'Key projects: <strong>AI Onboarding</strong> (95% faster), <strong>Integration Platform</strong> (1M+ req/day), <strong>EdTech Platform</strong> (10M+ msg/day), and personal app <strong>YourDateAI</strong>.';
+      else if (v.includes('contact') || v.includes('email') || v.includes('reach'))
+        reply = 'Email: <code>shubhammaurya2385@gmail.com</code> &nbsp;|&nbsp; Phone: <code>+91 7621069675</code> &nbsp;|&nbsp; LinkedIn &amp; GitHub links in the contact tab.';
+      else if (v.includes('blog') || v.includes('article') || v.includes('write'))
+        reply = 'Shubham has written about <strong>PostgreSQL performance</strong>, <strong>Kafka scaling</strong>, <strong>Socket.IO</strong>, <strong>AWS cost optimization</strong>, and more on Medium.';
+      appendAiMsg(reply);
+    }, 600);
+  }
+  function aiInputKey(e) { if (e.key === 'Enter') aiSend(); }
 
-    // Active nav highlight
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav a");
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove("active"));
-          const id = entry.target.getAttribute("id");
-          const navLink = document.querySelector(`nav a[href="#${id}"]`);
-          if (navLink) navLink.classList.add("active");
-        }
-      });
-    }, { threshold: 0.6 });
-
-    sections.forEach(section => observer.observe(section));
-    
-    // Add glow effect on hover for skill cards
-    skillCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.style.animation = 'glow 1.5s ease-in-out infinite';
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.animation = '';
-      });
+  /* ── Command Palette ── */
+  function openCP() {
+    document.getElementById('cpBg').classList.add('open');
+    const i = document.getElementById('cpIn');
+    i.value = ''; i.focus();
+    filterCp('');
+  }
+  function onCpBgClick(e) { if (e.target === document.getElementById('cpBg')) document.getElementById('cpBg').classList.remove('open'); }
+  function filterCp(v) {
+    v = v.toLowerCase();
+    let first = null;
+    document.querySelectorAll('.cp-item').forEach(el => {
+      const show = !v || el.textContent.toLowerCase().includes(v);
+      el.style.display = show ? '' : 'none';
+      el.classList.remove('sel');
+      if (show && !first) first = el;
     });
-  </script>
+    if (first) first.classList.add('sel');
+  }
+  document.querySelectorAll('.cp-item').forEach(el => el.addEventListener('click', () => {
+    switchTab(el.dataset.tab);
+    document.getElementById('cpBg').classList.remove('open');
+  }));
+
+  /* ── Keyboard shortcuts ── */
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'p') { e.preventDefault(); openCP(); return; }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'l') { e.preventDefault(); toggleAI(); return; }
+    const bg = document.getElementById('cpBg');
+    if (!bg.classList.contains('open')) return;
+    if (e.key === 'Escape') { bg.classList.remove('open'); return; }
+    const items = [...document.querySelectorAll('.cp-item')].filter(el => el.style.display !== 'none');
+    const idx = items.findIndex(el => el.classList.contains('sel'));
+    if (e.key === 'Enter') { if (items[idx]) items[idx].click(); return; }
+    if (e.key === 'ArrowDown') { e.preventDefault(); items.forEach(el => el.classList.remove('sel')); items[idx < items.length - 1 ? idx + 1 : 0]?.classList.add('sel'); }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); items.forEach(el => el.classList.remove('sel')); items[idx > 0 ? idx - 1 : items.length - 1]?.classList.add('sel'); }
+  });
+
+  /* ── Typing animation ── */
+  const ROLES = ['Senior Backend Engineer', 'Node.js / TypeScript Expert', 'Cloud-Native Architect', 'Gen-AI Integrator', 'Microservices Designer'];
+  let ri = 0, ci = 0, del = false;
+  const rEl = document.getElementById('heroRole');
+  function type() {
+    const cur = ROLES[ri];
+    if (!del) { rEl.textContent = cur.slice(0, ++ci); if (ci === cur.length) { del = true; setTimeout(type, 1900); return; } }
+    else { rEl.textContent = cur.slice(0, --ci); if (ci === 0) { del = false; ri = (ri + 1) % ROLES.length; } }
+    setTimeout(type, del ? 42 : 72);
+  }
+  type();
+
+  /* ── Status bar time ── */
+  function tick() {
+    const n = new Date();
+    document.getElementById('sbTime').textContent = `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+  }
+  tick(); setInterval(tick, 30000);
+
+  /* ── Sidebar toggle ── */
+  let sbVisible = true;
+  function toggleSidebar() {
+    sbVisible = !sbVisible;
+    const sb = document.getElementById('sidebar');
+    sb.style.display = sbVisible ? '' : 'none';
+    const body = document.getElementById('body');
+    const cols = aiOpen
+      ? (sbVisible ? '46px 210px 1fr 272px' : '46px 0 1fr 272px')
+      : (sbVisible ? '46px 210px 1fr 0px'   : '46px 0 1fr 0px');
+    body.style.gridTemplateColumns = cols;
+  }
+</script>
 </body>
 </html>
